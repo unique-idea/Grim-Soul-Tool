@@ -1,0 +1,285 @@
+﻿<Window x:Class="UI.Windows.ToolbarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Topmost="True"
+        ShowInTaskbar="True"
+        SizeToContent="WidthAndHeight"
+        Left="40" Top="180"
+        Title="GrimSoul Bot">
+
+    <Window.Background>
+        <SolidColorBrush Color="#F0080E1A"/>
+    </Window.Background>
+
+    <Window.Resources>
+
+        <!-- ── Shared button ControlTemplate ─────────────────────────── -->
+        <ControlTemplate x:Key="RoundBtnTemplate" TargetType="Button">
+            <Border x:Name="Bd"
+                    Width="54" Height="54"
+                    CornerRadius="12"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1"
+                    RenderTransformOrigin="0.5,0.5"
+                    SnapsToDevicePixels="True">
+                <Border.RenderTransform>
+                    <ScaleTransform x:Name="BtnScale" ScaleX="1" ScaleY="1"/>
+                </Border.RenderTransform>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <!-- Hover scale-up + border glow -->
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.07" Duration="0:0:0.12"/>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.07" Duration="0:0:0.12"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.0" Duration="0:0:0.12"/>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.0" Duration="0:0:0.12"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <!-- Press scale-down via EventTrigger -->
+                <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="0.93" Duration="0:0:0.07"/>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="0.93" Duration="0:0:0.07"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="PreviewMouseLeftButtonUp">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             To="1.07" Duration="0:0:0.08"/>
+                            <DoubleAnimation Storyboard.TargetName="BtnScale"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             To="1.07" Duration="0:0:0.08"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <!-- Hover border glow -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Bd" Property="BorderBrush"
+                            Value="#8000E676"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- ── Base toolbar button style ─────────────────────────────── -->
+        <Style x:Key="ToolBtn" TargetType="Button">
+            <Setter Property="Background"    Value="#2AFFFFFF"/>
+            <Setter Property="BorderBrush"   Value="#30FFFFFF"/>
+            <Setter Property="Foreground"    Value="#CCFFFFFF"/>
+            <Setter Property="Cursor"        Value="Hand"/>
+            <Setter Property="Margin"        Value="5,3"/>
+            <Setter Property="Template"      Value="{StaticResource RoundBtnTemplate}"/>
+        </Style>
+
+        <!-- Active (toggled-on) variant -->
+        <Style x:Key="ToolBtnActive" TargetType="Button" BasedOn="{StaticResource ToolBtn}">
+            <Setter Property="Background"  Value="#5000E676"/>
+            <Setter Property="BorderBrush" Value="#AA00E676"/>
+        </Style>
+
+        <!-- Icon TextBlock base -->
+        <Style x:Key="IconText" TargetType="TextBlock">
+            <Setter Property="FontSize"             Value="20"/>
+            <Setter Property="HorizontalAlignment"  Value="Center"/>
+            <Setter Property="VerticalAlignment"    Value="Center"/>
+        </Style>
+
+        <!-- Label beneath icon -->
+        <Style x:Key="BtnLabel" TargetType="TextBlock">
+            <Setter Property="FontSize"             Value="8.5"/>
+            <Setter Property="HorizontalAlignment"  Value="Center"/>
+            <Setter Property="Foreground"           Value="#88FFFFFF"/>
+            <Setter Property="FontFamily"           Value="Segoe UI"/>
+            <Setter Property="Margin"               Value="0,1,0,0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <!-- ── Outer glass panel ─────────────────────────────────────── -->
+    <Border x:Name="GlassPanel"
+            CornerRadius="16"
+            BorderBrush="#28FFFFFF"
+            BorderThickness="1"
+            Padding="0,10">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#E8101828" Offset="0"/>
+                <GradientStop Color="#E8080F1C" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="24"
+                              ShadowDepth="4" Opacity="0.6" Direction="315"/>
+        </Border.Effect>
+
+        <StackPanel Orientation="Vertical">
+
+            <!-- ── Drag handle ──────────────────────────────────── -->
+            <Border x:Name="DragHandle"
+                    Margin="8,0,8,6"
+                    Height="22" CornerRadius="8"
+                    Background="#18FFFFFF" Cursor="SizeAll"
+                    ToolTip="Drag to move toolbar"
+                    MouseLeftButtonDown="DragHandle_MouseLeftButtonDown">
+                <TextBlock Text="· · ·"
+                           FontSize="11"
+                           Foreground="#55FFFFFF"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+
+            <!-- thin separator -->
+            <Rectangle Height="1" Margin="10,0,10,6"
+                       Fill="#18FFFFFF"/>
+
+            <!-- ── Button 1 : Grid Toggle ─────────────────────── -->
+            <Button x:Name="BtnToggleGrid"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Show / Hide Grid"
+                    Click="BtnToggleGrid_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="⊞" Foreground="#00E676"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Grid"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button 2 : Grid Size ───────────────────────── -->
+            <Button x:Name="BtnGridSize"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Cycle grid density (10×10 → 50×50)"
+                    Click="BtnGridSize_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="⊕" Foreground="#40C4FF"/>
+                    <TextBlock x:Name="GridSizeLabel"
+                               Style="{StaticResource BtnLabel}"
+                               Text="10×10"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button : Sub-Regions Control (Zones) ────────── -->
+            <Button x:Name="BtnSubRegions"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Configure 3 Sub-Regions (Movable / Lockable Scan Zones)"
+                    Click="BtnSubRegions_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="📐" Foreground="#00E5FF"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Zones"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button : Click-Through / Play Mode [F2] ─────── -->
+            <Button x:Name="BtnClickThrough"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Toggle Click-Through / Play Mode [F2]: Click through MR into game"
+                    Click="BtnClickThrough_Click">
+                <StackPanel>
+                    <TextBlock x:Name="TxtClickThroughIcon"
+                               Style="{StaticResource IconText}"
+                               Text="🖱️" Foreground="#40C4FF"/>
+                    <TextBlock x:Name="TxtClickThroughLabel"
+                               Style="{StaticResource BtnLabel}" Text="Click-Thru"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button 3 : Item List ───────────────────────── -->
+            <Button x:Name="BtnItemList"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Show / Hide Item Whitelist"
+                    Click="BtnItemList_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="☰" Foreground="#FFD740"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Items"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button : Terminal Logs ──────────────────────── -->
+            <Button x:Name="BtnTerminalLog"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Open Pipeline Real-Time Terminal Logs"
+                    Click="BtnTerminalLog_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="&gt;_"
+                               Foreground="#B388FF"
+                               FontFamily="Cascadia Mono, Consolas"
+                               FontWeight="Bold"
+                               FontSize="16"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Logs"/>
+                </StackPanel>
+            </Button>
+
+            <!-- separator before action buttons -->
+            <Rectangle Height="1" Margin="10,6,10,6"
+                       Fill="#18FFFFFF"/>
+
+            <!-- ── Button 4 : Start ───────────────────────────── -->
+            <Button x:Name="BtnStart"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Start Bot"
+                    Click="BtnStart_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="▶" Foreground="#69F0AE"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Start"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button 5 : Pause ───────────────────────────── -->
+            <Button x:Name="BtnPause"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Pause Bot [ESC]"
+                    Click="BtnPause_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="⏸" Foreground="#FFD740"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Pause"/>
+                </StackPanel>
+            </Button>
+
+            <!-- ── Button 6 : Close ───────────────────────────── -->
+            <Button x:Name="BtnClose"
+                    Style="{StaticResource ToolBtn}"
+                    ToolTip="Close Application"
+                    Click="BtnClose_Click">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource IconText}"
+                               Text="✕" Foreground="#FF5252"/>
+                    <TextBlock Style="{StaticResource BtnLabel}" Text="Close"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </Border>
+</Window>

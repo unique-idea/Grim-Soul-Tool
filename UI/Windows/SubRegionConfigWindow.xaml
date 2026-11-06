@@ -1,0 +1,831 @@
+<Window x:Class="UI.Windows.SubRegionConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Topmost="True"
+        ShowInTaskbar="False"
+        Width="340"
+        SizeToContent="Height"
+        Title="Sub-Regions Config">
+
+    <Window.Background>
+        <SolidColorBrush Color="#F0080E1A"/>
+    </Window.Background>
+
+    <Window.Resources>
+        <!-- Button Style -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#22FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#33FFFFFF"/>
+            <Setter Property="Foreground" Value="#E0FFFFFF"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#38FFFFFF"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#8000E676"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#18FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Inc/Dec Button Style -->
+        <Style x:Key="StepButton" TargetType="Button">
+            <Setter Property="Background" Value="#2AFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#3AFFFFFF"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#44FFFFFF"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#9000E5FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Tab Button Style -->
+        <Style x:Key="TabButton" TargetType="Button">
+            <Setter Property="Background" Value="#1AFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#25FFFFFF"/>
+            <Setter Property="Foreground" Value="#AAFFFFFF"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Numeric TextBox Style -->
+        <Style x:Key="NumericInput" TargetType="TextBox">
+            <Setter Property="Background" Value="#1EFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#40FFFFFF"/>
+            <Setter Property="Foreground" Value="#00E676"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="CaretBrush" Value="#00E676"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#00E676"/>
+                                <Setter TargetName="bd" Property="Background" Value="#2AFFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Outer Card -->
+    <Border CornerRadius="16"
+            BorderBrush="#28FFFFFF"
+            BorderThickness="1"
+            Margin="6">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#F2101828" Offset="0"/>
+                <GradientStop Color="#F2080F1C" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="20" ShadowDepth="4" Opacity="0.7"/>
+        </Border.Effect>
+
+        <StackPanel Margin="14,10,14,14">
+
+            <!-- ── Drag Handle ──────────────────────────────── -->
+            <Border x:Name="DragHandle"
+                    Height="20" CornerRadius="6"
+                    Background="#18FFFFFF" Cursor="SizeAll"
+                    ToolTip="Drag to move panel"
+                    MouseLeftButtonDown="DragHandle_MouseLeftButtonDown">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="· · · " Foreground="#66FFFFFF" FontSize="11"/>
+                    <TextBlock Text="📐 Scan Pipelines Control" Foreground="#AAFFFFFF" FontSize="10" FontWeight="SemiBold"/>
+                    <TextBlock Text=" · · ·" Foreground="#66FFFFFF" FontSize="11"/>
+                </StackPanel>
+            </Border>
+
+            <!-- ── Region Picker Tabs (R1 to R6) ─────────────── -->
+            <Grid Margin="0,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnTabR1" Grid.Column="0" Style="{StaticResource TabButton}" Click="BtnTabR1_Click" ToolTip="Healthbar">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#00E5FF" Margin="0,0,2,0"/>
+                        <TextBlock Text="HP" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnTabR2" Grid.Column="2" Style="{StaticResource TabButton}" Click="BtnTabR2_Click" ToolTip="Mini Map">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#FF9100" Margin="0,0,2,0"/>
+                        <TextBlock Text="Map" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnTabR3" Grid.Column="4" Style="{StaticResource TabButton}" Click="BtnTabR3_Click" ToolTip="Inventory">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#E040FB" Margin="0,0,2,0"/>
+                        <TextBlock Text="Inv" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnTabR4" Grid.Column="6" Style="{StaticResource TabButton}" Click="BtnTabR4_Click" ToolTip="Equipment">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#FFD700" Margin="0,0,2,0"/>
+                        <TextBlock Text="Equip" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnTabR5" Grid.Column="8" Style="{StaticResource TabButton}" Click="BtnTabR5_Click" ToolTip="Enemy Bar">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#FF1744" Margin="0,0,2,0"/>
+                        <TextBlock Text="Enemy" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnTabR6" Grid.Column="10" Style="{StaticResource TabButton}" Click="BtnTabR6_Click" ToolTip="Chest">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="#00E676" Margin="0,0,2,0"/>
+                        <TextBlock Text="Chest" FontSize="9"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- ── Selected Region Header & Badge ────────────── -->
+            <Border x:Name="RegionHeaderCard"
+                    CornerRadius="10"
+                    BorderThickness="1"
+                    BorderBrush="#3300E5FF"
+                    Background="#1500E5FF"
+                    Padding="10,8"
+                    Margin="0,0,0,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                        <TextBlock x:Name="TxtRegionTitle"
+                                   Text="Healthbar"
+                                   FontWeight="Bold"
+                                   FontSize="13"
+                                   Foreground="#00E5FF"/>
+                        <TextBlock x:Name="TxtRegionSubtitle"
+                                   Text="Scan Zone · Unlocked"
+                                   FontSize="10"
+                                   Foreground="#88FFFFFF"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <!-- Lock Status Badge -->
+                    <Border x:Name="BadgeLockStatus"
+                            Grid.Column="1"
+                            CornerRadius="6"
+                            Background="#20FFFFFF"
+                            Padding="6,3"
+                            VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtLockBadge"
+                                   Text="🔓 Unlocked"
+                                   FontSize="10"
+                                   Foreground="#CCCCCC"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- ── Action Toggles (View, Grid, Lock) ──────────── -->
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition x:Name="ColGridToggle" Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnToggleView"
+                        Grid.Column="0"
+                        Style="{StaticResource ActionButton}"
+                        Margin="0,0,3,0"
+                        Click="BtnToggleView_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="👁 " FontSize="11"/>
+                        <TextBlock x:Name="TxtViewStatus" Text="Visible"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnToggleGrid"
+                        Grid.Column="1"
+                        Style="{StaticResource ActionButton}"
+                        Margin="3,0,3,0"
+                        Click="BtnToggleGrid_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="⊞ " FontSize="11"/>
+                        <TextBlock x:Name="TxtGridStatus" Text="Grid On"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnToggleLock"
+                        Grid.Column="2"
+                        Style="{StaticResource ActionButton}"
+                        Margin="3,0,0,0"
+                        Click="BtnToggleLock_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="TxtLockIcon" Text="🔒 " FontSize="11"/>
+                        <TextBlock x:Name="TxtLockStatus" Text="Lock MR"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- ── Scan Frequency / Interval Setting ─────────── -->
+            <Border x:Name="IntervalConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="⏱ " FontSize="12" Foreground="#00E676"/>
+                        <TextBlock Text="Interval:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecInterval"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecInterval_Click"/>
+                        <TextBox x:Name="TxtInterval"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="1000"
+                                 LostFocus="TxtInterval_LostFocus"
+                                 KeyDown="TxtInterval_KeyDown"/>
+                        <Button x:Name="BtnIncInterval"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncInterval_Click"/>
+                        <TextBlock Text="ms"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Healthbar Heal Cooldown / Countdown Setting (Only visible when R1 is selected) ── -->
+            <Border x:Name="HealCooldownConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="⏳ " FontSize="12" Foreground="#00E5FF"/>
+                        <TextBlock Text="Heal Cooldown:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecHealCd"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecHealCd_Click"/>
+                        <TextBox x:Name="TxtHealCd"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="1000"
+                                 LostFocus="TxtHealCd_LostFocus"
+                                 KeyDown="TxtHealCd_KeyDown"/>
+                        <Button x:Name="BtnIncHealCd"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncHealCd_Click"/>
+                        <TextBlock Text="ms"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Healthbar Max HP Setting (Only visible when R1 is selected) ── -->
+            <Border x:Name="MaxHpConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="❤️ " FontSize="12" Foreground="#FF5252"/>
+                        <TextBlock Text="Max HP:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecMaxHp"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecMaxHp_Click"/>
+                        <TextBox x:Name="TxtMaxHp"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="120"
+                                 LostFocus="TxtMaxHp_LostFocus"
+                                 KeyDown="TxtMaxHp_KeyDown"/>
+                        <Button x:Name="BtnIncMaxHp"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncMaxHp_Click"/>
+                        <TextBlock Text="hp"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Healthbar Heal Threshold Setting (Only visible when R1 is selected) ── -->
+            <Border x:Name="HealThresholdConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="💊 " FontSize="12" Foreground="#00E5FF"/>
+                        <TextBlock Text="Heal Threshold (% HP):"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecHealThreshold"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecHealThreshold_Click"/>
+                        <TextBox x:Name="TxtHealThreshold"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="40"
+                                 LostFocus="TxtHealThreshold_LostFocus"
+                                 KeyDown="TxtHealThreshold_KeyDown"/>
+                        <Button x:Name="BtnIncHealThreshold"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncHealThreshold_Click"/>
+                        <TextBlock Text="%"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Under Region Status (Only visible when R1 is selected) ── -->
+            <Border x:Name="HealthSplitConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🎯 " FontSize="12" Foreground="#00E676"/>
+                            <TextBlock Text="Under Region (Current HP):"
+                                       Foreground="#CCFFFFFF"
+                                       FontSize="11.5"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtSplitSummary"
+                                   Text="Cover exact number on screen"
+                                   Foreground="#00E676"
+                                   FontSize="10"
+                                   Margin="20,2,0,0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" Background="#2000E676" BorderBrush="#00E676" BorderThickness="1" CornerRadius="5" Padding="6,2" VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtSplitPercent" Text="Attached" Foreground="#00E676" FontSize="10" FontWeight="SemiBold"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- ── Enemy Bar Attack Threshold Setting (Only visible when R5 is selected) ── -->
+            <Border x:Name="EnemyThresholdConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="⚔️ " FontSize="12" Foreground="#FF1744"/>
+                        <TextBlock Text="Attack Threshold (% Width):"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecEnemyThreshold"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecEnemyThreshold_Click"/>
+                        <TextBox x:Name="TxtEnemyThreshold"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="50"
+                                 LostFocus="TxtEnemyThreshold_LostFocus"
+                                 KeyDown="TxtEnemyThreshold_KeyDown"/>
+                        <Button x:Name="BtnIncEnemyThreshold"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncEnemyThreshold_Click"/>
+                        <TextBlock Text="%"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Enemy Energy Max Value Setting (Only visible when R5 is selected) ── -->
+            <Border x:Name="MaxEnergyConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,7" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="⚡ " FontSize="12" Foreground="#FFD600"/>
+                        <TextBlock Text="Max Energy:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="11.5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecMaxEnergy"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecMaxEnergy_Click"/>
+                        <TextBox x:Name="TxtMaxEnergy"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="60" Height="26"
+                                 Text="100"
+                                 LostFocus="TxtMaxEnergy_LostFocus"
+                                 KeyDown="TxtMaxEnergy_KeyDown"/>
+                        <Button x:Name="BtnIncMaxEnergy"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncMaxEnergy_Click"/>
+                        <TextBlock Text="ep"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="11"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Mini Map Linked Grid Size Configuration (10x10 -> 15x15 -> ... -> 30x30) ── -->
+            <Border x:Name="MiniMapGridConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,8" Margin="0,0,0,10" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🌐 " FontSize="12" Foreground="#FF9100"/>
+                            <TextBlock Text="Grid Size (N×N):"
+                                       Foreground="#CCFFFFFF"
+                                       FontSize="11.5"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtMiniMapGridSummary"
+                                   Text="10×10"
+                                   Foreground="#88FFFFFF"
+                                   FontSize="10"
+                                   Margin="20,2,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button x:Name="BtnDecMiniMapGrid"
+                                Style="{StaticResource StepButton}"
+                                Content="-"
+                                Width="26" Height="26"
+                                Click="BtnDecMiniMapGrid_Click"/>
+                        <TextBox x:Name="TxtMiniMapGrid"
+                                 Style="{StaticResource NumericInput}"
+                                 Margin="5,0,5,0"
+                                 Width="65" Height="26"
+                                 Text="10×10"
+                                 LostFocus="TxtMiniMapGrid_LostFocus"
+                                 KeyDown="TxtMiniMapGrid_KeyDown"/>
+                        <Button x:Name="BtnIncMiniMapGrid"
+                                Style="{StaticResource StepButton}"
+                                Content="+"
+                                Width="26" Height="26"
+                                Click="BtnIncMiniMapGrid_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ── Grid Row & Column Configuration (Only for regions with flexible grid) ── -->
+            <Border x:Name="GridConfigBorder" Background="#12FFFFFF" CornerRadius="10" Padding="10,8" Margin="0,0,0,10">
+                <StackPanel>
+                    <!-- Rows row -->
+                    <Grid Margin="0,2,0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Rows:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="12"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="BtnDecRow"
+                                    Style="{StaticResource StepButton}"
+                                    Content="-"
+                                    Click="BtnDecRow_Click"/>
+                            <TextBox x:Name="TxtRows"
+                                     Style="{StaticResource NumericInput}"
+                                     Margin="6,0,6,0"
+                                     Text="3"
+                                     LostFocus="TxtRows_LostFocus"
+                                     KeyDown="TxtRows_KeyDown"/>
+                            <Button x:Name="BtnIncRow"
+                                    Style="{StaticResource StepButton}"
+                                    Content="+"
+                                    Click="BtnIncRow_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Columns row -->
+                    <Grid Margin="0,4,0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Columns:"
+                                   Foreground="#CCFFFFFF"
+                                   FontSize="12"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="BtnDecCol"
+                                    Style="{StaticResource StepButton}"
+                                    Content="-"
+                                    Click="BtnDecCol_Click"/>
+                            <TextBox x:Name="TxtCols"
+                                     Style="{StaticResource NumericInput}"
+                                     Margin="6,0,6,0"
+                                     Text="3"
+                                     LostFocus="TxtCols_LostFocus"
+                                     KeyDown="TxtCols_KeyDown"/>
+                            <Button x:Name="BtnIncCol"
+                                    Style="{StaticResource StepButton}"
+                                    Content="+"
+                                    Click="BtnIncCol_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Notice card for regions without grid settings (Healthbar, Equipment 5x1, Enemy Bar, Inventory 5x5, Chest 5x5) -->
+            <Border x:Name="FixedNoticeBorder"
+                    Background="#10FFFFFF"
+                    CornerRadius="8"
+                    Padding="10,7"
+                    Margin="0,0,0,10"
+                    Visibility="Collapsed">
+                <TextBlock x:Name="TxtFixedNotice"
+                           Text="Single Scan Rectangle (No grid needed)"
+                           FontSize="11"
+                           Foreground="#88FFFFFF"
+                           HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- ── Quick Alignment / Position Tools ──────────── -->
+            <Grid x:Name="AlignmentToolsGrid" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="ColCenterBtn" Width="*"/>
+                    <ColumnDefinition x:Name="ColCenterGap" Width="6"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnCenterRegion"
+                        Grid.Column="0"
+                        Style="{StaticResource ActionButton}"
+                        Click="BtnCenterRegion_Click">
+                    <TextBlock Text="⊕ Center in MR" FontSize="10.5"/>
+                </Button>
+
+                <Button x:Name="BtnResetPreset"
+                        Grid.Column="2"
+                        Style="{StaticResource ActionButton}"
+                        Click="BtnResetPreset_Click">
+                    <TextBlock Text="↺ Reset Size" FontSize="10.5"/>
+                </Button>
+            </Grid>
+
+            <!-- Separator -->
+            <Rectangle Height="1" Fill="#18FFFFFF" Margin="0,2,0,8"/>
+
+            <!-- ── All 6 Regions Status Overview ─────────────── -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="ZONES OVERVIEW"
+                           FontSize="9"
+                           FontWeight="Bold"
+                           Foreground="#66FFFFFF"
+                           Margin="0,0,0,4"/>
+
+                <!-- R1 Healthbar -->
+                <Border x:Name="RowOverviewR1" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR1_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#00E5FF" Margin="0,0,6,0"/>
+                            <TextBlock Text="Healthbar" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR1" Text="👁 · 🔓" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <!-- R2 Mini Map -->
+                <Border x:Name="RowOverviewR2" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR2_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#FF9100" Margin="0,0,6,0"/>
+                            <TextBlock Text="Mini Map" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR2" Text="👁 · ⊞ · 🔓" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <!-- R3 Inventory -->
+                <Border x:Name="RowOverviewR3" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR3_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#E040FB" Margin="0,0,6,0"/>
+                            <TextBlock Text="Inventory" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR3" Text="👁 · ⊞ · 🔓" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <!-- R4 Equipment -->
+                <Border x:Name="RowOverviewR4" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR4_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#FFD700" Margin="0,0,6,0"/>
+                            <TextBlock Text="Equipment" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR4" Text="👁 · ⊞ · 🔓" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <!-- R5 Enemy Bar -->
+                <Border x:Name="RowOverviewR5" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR5_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#FF1744" Margin="0,0,6,0"/>
+                            <TextBlock Text="Enemy Bar" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR5" Text="👁 · 📌 Top-Center" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <!-- R6 Chest -->
+                <Border x:Name="RowOverviewR6" CornerRadius="6" Background="#0FFFFFFF" Padding="6,3" Margin="0,1" Cursor="Hand" MouseLeftButtonDown="BtnTabR6_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Fill="#00E676" Margin="0,0,6,0"/>
+                            <TextBlock Text="Chest" FontSize="10" Foreground="#DDFFFFFF"/>
+                        </StackPanel>
+                        <TextBlock x:Name="TxtOverviewR6" Text="👁 · ⊞ · 🔓" FontSize="10" Foreground="#99FFFFFF" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    </Border>
+</Window>
