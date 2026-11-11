@@ -1,4 +1,4 @@
-﻿using Engine.Enums;
+using Engine.Enums;
 using Engine.Models;
 using Engine.References.Models;
 using Engine.Services.Interfaces;
@@ -18,17 +18,26 @@ namespace Engine.Services.Implements
         private readonly IDetector _detector;
         private readonly TesseractOcrDetector? _tesseractDetector;
 
-        // 1. Màu xám chuẩn của lòng ô rương UI (Chính xác từ ảnh UI rương)
         public static readonly IReadOnlyList<Color> ChestSlotBackgroundColors = new List<Color>
         {
-            ColorTranslator.FromHtml("#2A2928"),
             ColorTranslator.FromHtml("#2B2B2B"),
-            ColorTranslator.FromHtml("#2B2C2B"),
-            ColorTranslator.FromHtml("#383837"),
-            ColorTranslator.FromHtml("#434443")
+            ColorTranslator.FromHtml("#2C2C2B"),
+            ColorTranslator.FromHtml("#2B2C2C"),
+            ColorTranslator.FromHtml("#2A2B2B"),
+            ColorTranslator.FromHtml("#2B2B2A"),
+            ColorTranslator.FromHtml("#2C2C2C"),
+            ColorTranslator.FromHtml("#2C2B2B"),
+            ColorTranslator.FromHtml("#2A2B2C"),
+
+            ColorTranslator.FromHtml("#373939"),
+            ColorTranslator.FromHtml("#36393A"),
+            ColorTranslator.FromHtml("#373B3B"),
+            ColorTranslator.FromHtml("#373C3D"),
+            ColorTranslator.FromHtml("#353A3B"),
+            ColorTranslator.FromHtml("#363B3C"),
+            ColorTranslator.FromHtml("#383B3B")
         };
 
-        // 2. Màu đường viền lưới nâu sáng phân ô Matrix UI
         public static readonly IReadOnlyList<Color> ChestGridMatrixColors = new List<Color>
         {
             ColorTranslator.FromHtml("#4D443C"),
@@ -82,13 +91,11 @@ namespace Engine.Services.Implements
                     Color px = bmp.GetPixel(x, y);
                     totalSamples++;
 
-                    // A. KIỂM TRA MÀU ĐÊM (NIGHT TINT): Ban đêm kênh B (Blue) chênh lệch cao hơn hẳn R và G
                     if (px.B > px.R + 8 && px.B > px.G + 6)
                     {
                         nightTintMatches++;
                     }
 
-                    // B. KIỂM TRA MÀU NỀN UI RƯƠNG THUẦN (Xám trung tính, R, G, B lệch <= 6)
                     if (IsColorMatch(px, ChestSlotBackgroundColors, 14.0))
                     {
                         int maxDiff = Math.Max(Math.Abs(px.R - px.G), Math.Max(Math.Abs(px.G - px.B), Math.Abs(px.R - px.B)));
@@ -98,7 +105,6 @@ namespace Engine.Services.Implements
                         }
                     }
 
-                    // C. KIỂM TRA MÀU ĐƯỜNG KẺ NÂU SÁNG MATRIX
                     if (IsColorMatch(px, ChestGridMatrixColors, 12.0))
                     {
                         matrixGridMatches++;
@@ -112,17 +118,16 @@ namespace Engine.Services.Implements
             double chestBgRatio = (double)validChestBgMatches / totalSamples;
             double matrixRatio = (double)matrixGridMatches / totalSamples;
 
-            // 1. ĐIỀU KIỆN PHỦ QUYẾT: Nếu có sắc xanh đen đêm chiếm > 12% -> CHẮC CHẮN NỀN GAME (BÁO CLOSED)
             if (nightRatio >= 0.12)
             {
                 Debug.WriteLine($"[Chest Check] Rejected: Night Blue Tint Detected ({nightRatio:P1})");
                 return false;
             }
 
-            // 2. XÁC NHẬN RƯƠNG MỞ: Màn hình phải có màu nền xám chuẩn >= 20% VÀ có vệt màu nâu sáng của lưới matrix
             bool isOpen = (chestBgRatio >= 0.20) && (matrixRatio >= 0.015 || chestBgRatio >= 0.40);
             return isOpen;
         }
+
         private static bool IsColorMatch(Color pixel, IEnumerable<Color> targetColors, double tolerance)
         {
             foreach (var target in targetColors)
@@ -160,7 +165,7 @@ namespace Engine.Services.Implements
             }
         }
 
-        public List<ChestSlotResult> ScanChestSlotsFromBitmap(Bitmap bitmap, int rows = 5, int cols = 5, IEnumerable<Item>? candidateItems = null)
+        public List<ChestSlotResult> ScanChestSlotsFromBitmap(Bitmap bitmap, int rows = 4, int cols = 5, IEnumerable<Item>? candidateItems = null)
         {
             var results = new List<ChestSlotResult>();
             if (rows <= 0 || cols <= 0 || bitmap.Width <= 10 || bitmap.Height <= 10) return results;
@@ -201,12 +206,6 @@ namespace Engine.Services.Implements
             return results;
         }
 
-        private class ColorCluster
-        {
-            public Color BaseColor { get; set; }
-            public int PixelCount { get; set; }
-        }
-
         private ChestSlotResult AnalyzeSingleSlot(Bitmap slotBmp, int row, int col, List<Item> candidateItems)
         {
             var result = new ChestSlotResult { Row = row, Col = col, HasItem = false, Item = null, Quantity = 0 };
@@ -214,18 +213,18 @@ namespace Engine.Services.Implements
             int w = slotBmp.Width;
             int h = slotBmp.Height;
 
-            int insetX = (int)(w * 0.12);
-            int insetY = (int)(h * 0.12);
+            int insetX = (int)(w * 0.15);
+            int insetY = (int)(h * 0.15);
             int innerW = Math.Max(1, w - insetX * 2);
             int innerH = Math.Max(1, h - insetY * 2);
+
+            int qtyStartX = (int)(w * 0.55);
+            int qtyStartY = (int)(h * 0.55);
 
             BitmapData data = slotBmp.LockBits(new Rectangle(0, 0, w, h), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             byte[] bytes = new byte[Math.Abs(data.Stride) * h];
             Marshal.Copy(data.Scan0, bytes, 0, bytes.Length);
             slotBmp.UnlockBits(data);
-
-            int totalInnerPixels = 0;
-            int nonBgPixels = 0;
 
             var slotPixels = new List<Color>();
 
@@ -234,90 +233,74 @@ namespace Engine.Services.Implements
                 int rowOffset = y * data.Stride;
                 for (int x = insetX; x < insetX + innerW; x++)
                 {
+                    if (x >= qtyStartX && y >= qtyStartY) continue;
+
                     int px = rowOffset + (x * 4);
                     byte b = bytes[px];
                     byte g = bytes[px + 1];
                     byte r = bytes[px + 2];
 
                     Color pxColor = Color.FromArgb(r, g, b);
-                    totalInnerPixels++;
 
-                    if (!IsSlotBackgroundColor(pxColor, 18.0))
+                    if (!IsStrictChestBackground(pxColor))
                     {
-                        nonBgPixels++;
                         slotPixels.Add(pxColor);
                     }
                 }
             }
 
-            double nonBgRatio = totalInnerPixels > 0 ? (double)nonBgPixels / totalInnerPixels : 0;
-
-            // Ngưỡng kiểm tra ô có đồ hay không
-            if (nonBgRatio >= 0.12 && slotPixels.Any())
+            if (slotPixels.Any())
             {
+                // 1. LẤY RA TOP 15 MÀU XUẤT HIỆN NHIỀU NHẤT TRONG SLOT
+                var slotTopColorsWithCount = slotPixels
+                    .GroupBy(c => c)
+                    .OrderByDescending(g => g.Count())
+                    .Take(15)
+                    .Select(g => new { Color = g.Key, Hex = ColorTranslator.ToHtml(g.Key), Count = g.Count() })
+                    .ToList();
+
+                // Log Top 15 Colors (Giữ nguyên 100%)
+                Debug.WriteLine($"--- [Slot ({row + 1}x{col + 1})] TOP 15 COLORS ---");
+                foreach (var colorItem in slotTopColorsWithCount)
+                {
+                    Debug.WriteLine($"  - Hex: {colorItem.Hex} | RGB: ({colorItem.Color.R}, {colorItem.Color.G}, {colorItem.Color.B}) | Total: {colorItem.Color.R + colorItem.Color.G + colorItem.Color.B}");
+                }
+                Debug.WriteLine("------------------------------------------");
+
                 Item? bestItem = null;
-                double maxMatchRatio = 0.0;
-                int maxMatchedPixelCount = 0;
+                double maxMatchedScore = 0.0;
 
                 foreach (var item in candidateItems)
                 {
-                    if (item.Colors == null || !item.Colors.Any()) continue;
+                    double currentMatchedScore = CalculateSlotScore(slotPixels, item);
 
-                    // Đếm số pixel trong slot khớp với bảng màu của Item này
-                    int matchedPixels = 0;
-                    var matchedRegistryColors = new HashSet<Color>();
-
-                    // LẤY DUNG SAI TỰ ĐỊNH NGHĨA TỪ ITEM (HOẶC MẶC ĐỊNH 18.0)
-                    double tolerance = item.ColorTolerance > 0 ? item.ColorTolerance : 18.0;
-
-                    foreach (var pxColor in slotPixels)
+                    if (currentMatchedScore <= 0)
                     {
-                        foreach (var itemColor in item.Colors)
-                        {
-                            // SO SÁNH THEO TỪNG COLOR TOLERANCE ĐỘNG CỦA ITEM
-                            if (CalculateColorDistance(pxColor, itemColor) <= tolerance)
-                            {
-                                matchedPixels++;
-                                matchedRegistryColors.Add(itemColor);
-                                break;
-                            }
-                        }
+                        continue;
                     }
 
-                    // Tỉ lệ % màu trong Registry của Item được tìm thấy trên ảnh
-                    double registryCoverage = (double)matchedRegistryColors.Count / item.Colors.Count;
-                    // Tỉ lệ % Pixel trên ảnh thuộc về Item này
-                    double pixelCoverage = (double)matchedPixels / slotPixels.Count;
-
-                    // Điểm số kết hợp: Ưu tiên registryCoverage cao & pixelCoverage cao
-                    double totalScore = (registryCoverage * 0.6) + (pixelCoverage * 0.4);
-
-                    // Điều kiện chọn Item: Đạt tối thiểu 25% màu registry và 15px
-                    if (registryCoverage >= 0.25 && matchedPixels >= 15)
+                    if (currentMatchedScore > maxMatchedScore)
                     {
-                        if (totalScore > maxMatchRatio)
-                        {
-                            maxMatchRatio = totalScore;
-                            maxMatchedPixelCount = matchedPixels;
-                            bestItem = item;
-                        }
+                        maxMatchedScore = currentMatchedScore;
+                        bestItem = item;
                     }
                 }
 
-                if (bestItem != null)
+                if (bestItem != null && maxMatchedScore >= 500.0)
                 {
                     result.HasItem = true;
                     result.Item = bestItem;
-                    Debug.WriteLine($"[Slot ({row + 1}x{col + 1})] Selected: {bestItem.DisplayName} | Score: {maxMatchRatio:P1} ({maxMatchedPixelCount}px)");
+                    Debug.WriteLine($"[Slot ({row + 1}x{col + 1})] Selected: {bestItem.DisplayName} | Score: {maxMatchedScore:F1}");
                 }
-                else
-                {
-                    Debug.WriteLine($"[Slot ({row + 1}x{col + 1})] UNKNOWN ITEM | NonBg Ratio: {nonBgRatio:P1}");
-                }
+            }
+            else
+            {
+                Debug.WriteLine("Not Found Item " + slotPixels.Count + "Count");
             }
 
             return result;
         }
+
         private int TryReadQuantity(Bitmap slotBmp)
         {
             if (_tesseractDetector == null || !_tesseractDetector.IsAvailable)
@@ -406,18 +389,56 @@ namespace Engine.Services.Implements
             return dst;
         }
 
-        public static bool IsSlotBackgroundColor(Color c, double tolerance = 18.0)
+        private static double CalculateSlotScore(List<Color> slotPixels, Item item)
         {
-            foreach (var bg in ChestSlotBackgroundColors)
+            if (slotPixels == null || slotPixels.Count < 80) return 0.0;
+
+            // 1. Náº¿u item cÃ³ hÃ m Ä‘Ã¡nh giÃ¡ Ä‘áº·c trÆ°ng riÃªng
+            if (item.CustomEvaluator != null)
             {
-                if (CalculateColorDistance(c, bg) <= tolerance)
+                return item.CustomEvaluator(slotPixels);
+            }
+
+            // 2. Fallback so khá»›p theo danh sÃ¡ch Colors chuáº©n
+            if (item.Colors != null && item.Colors.Count > 0)
+            {
+                double matched = 0.0;
+                foreach (var px in slotPixels)
+                {
+                    if (item.Colors.Any(c => CalculateColorDistance(px, c) <= item.ColorTolerance))
+                    {
+                        matched++;
+                    }
+                }
+                return matched;
+            }
+
+            return 0.0;
+        }
+
+        public static bool IsStrictChestBackground(Color c)
+        {
+            // Ná»n rÆ°Æ¡ng lÃ  mÃ u xÃ¡m trung tÃ­nh (RGB tá»« 40 Ä‘áº¿n 46, vÃ  Ä‘á»™ lá»‡ch giá»¯a cÃ¡c kÃªnh <= 2)
+            if (c.R >= 40 && c.R <= 46 &&
+                Math.Abs(c.R - c.G) <= 2 &&
+                Math.Abs(c.G - c.B) <= 2 &&
+                Math.Abs(c.R - c.B) <= 2)
+            {
+                return true;
+            }
+
+            // Danh sÃ¡ch cÃ¡c mÃ£ mÃ u ná»n cá»‘ Ä‘á»‹nh
+            for (int i = 0; i < ChestSlotBackgroundColors.Count; i++)
+            {
+                var bg = ChestSlotBackgroundColors[i];
+                if (c.R == bg.R && c.G == bg.G && c.B == bg.B)
                 {
                     return true;
                 }
             }
+
             return false;
         }
-
         public static double CalculateColorDistance(Color c1, Color c2)
         {
             int rDiff = c1.R - c2.R;

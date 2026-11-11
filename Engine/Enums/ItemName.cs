@@ -37,7 +37,7 @@ namespace Engine.Enums
         Hawberry,
         Jelly,
         HoneyBarrel,
-        WineFlask,
+        Ale,
         Bandage,
         // ── Weapons / Equipment ──────────────────────────────────────────────
         Dagger,
@@ -89,6 +89,7 @@ namespace Engine.Enums
         MapFragment,
         Wheel,
         MandrakeTincture,
+        PumpkinSeeds,
         EmptyVial,
         Unknown, // Fallback for unrecognised items
     }

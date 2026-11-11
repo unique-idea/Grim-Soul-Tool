@@ -976,7 +976,7 @@ namespace UI.Windows
                 // Log danh sÃ¡ch cÃ¡c item quÃ©t Ä‘Æ°á»£c trong lÆ°á»£t nÃ y
                 string itemsStr = string.Join(", ", found.Select(s => $"{s.Row + 1}x{s.Col + 1}: {s.ItemDisplayName}"));
                 int emptyCount = slots.Count - found.Count;
-                _terminalLog.Log(6, $"{itemsStr} ... {emptyCount} slots empty (pass {pass})");
+                //_terminalLog.Log(6, $"{itemsStr} ... {emptyCount} slots empty (pass {pass})");
 
                 var selectedItems = _itemList.GetSelectedItems();
 

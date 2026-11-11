@@ -1,4 +1,6 @@
 using Engine.Enums;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Engine.Models
@@ -23,7 +25,6 @@ namespace Engine.Models
         /// <summary>Human-readable label shown in the UI whitelist panel.</summary>
         public string DisplayName { get; init; } = string.Empty;
 
-
         /// <summary>
         /// Optional filename (without extension) of a 32×32 icon inside
         /// UI/Assets/Icons/.  Leave null to show the default placeholder.
@@ -36,5 +37,11 @@ namespace Engine.Models
         /// Maps to the CheckBox in the whitelist panel.
         /// </summary>
         public bool EnabledByDefault { get; init; } = true;
+
+        /// <summary>
+        /// Logic đánh giá đặc trưng riêng của từng Item khi quét rương.
+        /// Trả về điểm số (>= 100 là nhận diện thành công).
+        /// </summary>
+        public Func<List<Color>, double>? CustomEvaluator { get; set; }
     }
 }

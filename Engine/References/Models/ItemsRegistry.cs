@@ -1,7 +1,9 @@
-﻿using Engine.Enums;
+using Engine.Enums;
 using Engine.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace Engine.References.Models
 {
@@ -11,571 +13,36 @@ namespace Engine.References.Models
         {
             return new List<Item>
             {
-
-                new Item
-                {
-                    Name = ItemName.Tree,
-                    Type = ItemType.Resource,
-                    DisplayName = "Wood",
-                    IconKey = "icon_tree",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#3B231A"),
-                        ColorTranslator.FromHtml("#442B23"),
-                        ColorTranslator.FromHtml("#4D342C"),
-                        ColorTranslator.FromHtml("#2B1A12"),
-                        ColorTranslator.FromHtml("#573E2E"),
-                        ColorTranslator.FromHtml("#926958")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.PineLog,
-                    Type = ItemType.Resource,
-                    DisplayName = "Pine Log",
-                    IconKey = "icon_pine_log",
-                    EnabledByDefault = true,
-                    ColorTolerance = 15.0,
-                    Colors = new List<Color>
-                    {
-                        Color.FromArgb(139, 69, 19),
-                        Color.FromArgb(160, 82, 45)
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.Stone,
-                    Type = ItemType.Resource,
-                    DisplayName = "Stone",
-                    IconKey = "icon_stone",
-                    EnabledByDefault = true,
-                    ColorTolerance = 12.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#7D756D"),
-                        ColorTranslator.FromHtml("#696158"),
-                        ColorTranslator.FromHtml("#171717"),
-                        ColorTranslator.FromHtml("#8A8279"),
-                        ColorTranslator.FromHtml("#736B63"),
-                        ColorTranslator.FromHtml("#534B4B")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Limestone,
-                    Type = ItemType.Resource,
-                    DisplayName = "Limestone",
-                    IconKey = "icon_limestone",
-                    EnabledByDefault = true,
-                    ColorTolerance = 18.0,
-                    Colors = new List<Color>
-                    {
-                        Color.FromArgb(192, 192, 192),
-                        Color.FromArgb(211, 211, 211)
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.SoulShard,
-                    Type = ItemType.Resource,
-                    DisplayName = "Soul Shard",
-                    IconKey = "icon_soul_shard",
-                    EnabledByDefault = true,
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#646464"),
-                        ColorTranslator.FromHtml("#777777"),
-                        ColorTranslator.FromHtml("#505050"),
-                        ColorTranslator.FromHtml("#5A5A5A"),
-                        ColorTranslator.FromHtml("#6E6E6E"),
-                        ColorTranslator.FromHtml("#909090")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperOre,
-                    Type = ItemType.Resource,
-                    DisplayName = "Copper Ore",
-                    IconKey = "icon_copper_ore",
-                    EnabledByDefault = true,
-                    ColorTolerance = 16.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#4F2D2D"),
-                        ColorTranslator.FromHtml("#402727"),
-                        ColorTranslator.FromHtml("#1B1B1B"),
-                        ColorTranslator.FromHtml("#663333"),
-                        ColorTranslator.FromHtml("#AE644B"),
-                        ColorTranslator.FromHtml("#A55A42")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.Hollyberry,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Hollyberry",
-                    IconKey = "icon_hollyberry",
-                    EnabledByDefault = true,
-                    ColorTolerance = 20.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#822D1C"),
-                        ColorTranslator.FromHtml("#02331A"),
-                        ColorTranslator.FromHtml("#E05C33"),
-                        ColorTranslator.FromHtml("#02442B"),
-                        ColorTranslator.FromHtml("#004840"),
-                        ColorTranslator.FromHtml("#181818")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Hawberry,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Hawberry",
-                    IconKey = "icon_hawberry",
-                    EnabledByDefault = true,
-                    ColorTolerance = 24.0,
-                    Colors = new List<Color>
-                    {
-
-                        ColorTranslator.FromHtml("#3E601C"),
-                        ColorTranslator.FromHtml("#3E4F1C"),
-                        ColorTranslator.FromHtml("#30411F"),
-                        ColorTranslator.FromHtml("#5B7D28"),
-                        ColorTranslator.FromHtml("#476925"),
-
-                        ColorTranslator.FromHtml("#5C233B"),
-                        ColorTranslator.FromHtml("#7B2446"),
-                        ColorTranslator.FromHtml("#5A1E36"),
-                        ColorTranslator.FromHtml("#8C2D52"),
-                        ColorTranslator.FromHtml("#A13860"),
-                        ColorTranslator.FromHtml("#3A1223")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.FlaxFibber,
-                    Type = ItemType.Resource,
-                    DisplayName = "Flax Fiber",
-                    IconKey = "icon_flax_fibber",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#634130"),
-                        ColorTranslator.FromHtml("#6D4C3B"),
-                        ColorTranslator.FromHtml("#191919"),
-                        ColorTranslator.FromHtml("#997755"),
-                        ColorTranslator.FromHtml("#CBC4B2"),
-                        ColorTranslator.FromHtml("#AA8866"),
-                        ColorTranslator.FromHtml("#89684F"),
-                        ColorTranslator.FromHtml("#734A39"),
-                        ColorTranslator.FromHtml("#6A4932")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Cloth,
-                    Type = ItemType.Resource,
-                    DisplayName = "Cloth",
-                    IconKey = "icon_cloth",
-                    EnabledByDefault = true,
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#A87655"),
-                        ColorTranslator.FromHtml("#9D6C4B"),
-                        ColorTranslator.FromHtml("#1C1C1C"),
-                        ColorTranslator.FromHtml("#895747"),
-                        ColorTranslator.FromHtml("#78473F"),
-                        ColorTranslator.FromHtml("#946342")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.ThickCloth,
-                    Type = ItemType.Resource,
-                    DisplayName = "Thick Cloth",
-                    IconKey = "icon_thick_cloth",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#B78E6D"),
-                        ColorTranslator.FromHtml("#CB9968"),
-                        ColorTranslator.FromHtml("#774444"),
-                        ColorTranslator.FromHtml("#8E654C"),
-                        ColorTranslator.FromHtml("#B6845B"),
-                        ColorTranslator.FromHtml("#7D5444")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Rope,
-                    Type = ItemType.Resource,
-                    DisplayName = "Rope",
-                    IconKey = "icon_rope",
-                    EnabledByDefault = true,
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#9D8664"),
-                        ColorTranslator.FromHtml("#7C644E"),
-                        ColorTranslator.FromHtml("#7C634C"),
-                        ColorTranslator.FromHtml("#60473A"),
-                        ColorTranslator.FromHtml("#B19876"),
-                        ColorTranslator.FromHtml("#7B5C47"),
-                        ColorTranslator.FromHtml("#AA9276")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.RawLeather,
-                    Type = ItemType.Resource,
-                    DisplayName = "Raw Leather",
-                    IconKey = "icon_raw_leather",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#58372F"),
-                        ColorTranslator.FromHtml("#997766"),
-                        ColorTranslator.FromHtml("#4A3129"),
-                        ColorTranslator.FromHtml("#65443B"),
-                        ColorTranslator.FromHtml("#8E6D5C"),
-                        ColorTranslator.FromHtml("#1B1C1C")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Leather,
-                    Type = ItemType.Resource,
-                    DisplayName = "Leather",
-                    IconKey = "icon_leather",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#502F1F"),
-                        ColorTranslator.FromHtml("#482716"),
-                        ColorTranslator.FromHtml("#361D15"),
-                        ColorTranslator.FromHtml("#6D4C33"),
-                        ColorTranslator.FromHtml("#795840"),
-                        ColorTranslator.FromHtml("#5A3929")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.RawMeat,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Raw Meat",
-                    IconKey = "icon_raw_meat",
-                    EnabledByDefault = true,
-                    ColorTolerance = 20.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#71272F"),
-                        ColorTranslator.FromHtml("#993344"),
-                        ColorTranslator.FromHtml("#C14A5B"),
-                        ColorTranslator.FromHtml("#7D2839"),
-                        ColorTranslator.FromHtml("#8A2F37"),
-                        ColorTranslator.FromHtml("#DDBBBB")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.LeekSeed,
-                    Type = ItemType.Resource,
-                    DisplayName = "Leek Seed",
-                    IconKey = "icon_leek_seed",
-                    EnabledByDefault = true,
-                    ColorTolerance = 16.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#211921"),
-                        ColorTranslator.FromHtml("#171717"),
-                        ColorTranslator.FromHtml("#BFB9A8"),
-                        ColorTranslator.FromHtml("#4C4C54"),
-                        ColorTranslator.FromHtml("#848075"),
-                        ColorTranslator.FromHtml("#B1AB9C")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.WheatSeed,
-                    Type = ItemType.Resource,
-                    DisplayName = "Wheat Seed",
-                    IconKey = "icon_wheat_seed",
-                    EnabledByDefault = true,
-                    ColorTolerance = 18.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#1D1D1D"),
-                        ColorTranslator.FromHtml("#BB8844"),
-                        ColorTranslator.FromHtml("#131313"),
-                        ColorTranslator.FromHtml("#DEAB56"),
-                        ColorTranslator.FromHtml("#CB9854"),
-                        ColorTranslator.FromHtml("#A4713E")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.OakSeed,
-                    Type = ItemType.Resource,
-                    DisplayName = "Oak Seed",
-                    IconKey = "icon_oak_seed",
-                    EnabledByDefault = true,
-                    ColorTolerance = 17.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#8E5B28"),
-                        ColorTranslator.FromHtml("#1C1C1C"),
-                        ColorTranslator.FromHtml("#A76D44"),
-                        ColorTranslator.FromHtml("#7F4C2A"),
-                        ColorTranslator.FromHtml("#986532"),
-                        ColorTranslator.FromHtml("#DFB695")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.BonePowder,
-                    Type = ItemType.Special,
-                    DisplayName = "Bone Powder",
-                    IconKey = "icon_bone_powder",
-                    EnabledByDefault = true,
-                    ColorTolerance = 18.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#BB9A71"),
-                        ColorTranslator.FromHtml("#996633"),
-                        ColorTranslator.FromHtml("#7D8E9F"),
-                        ColorTranslator.FromHtml("#D08E44"),
-                        ColorTranslator.FromHtml("#B37940"),
-                        ColorTranslator.FromHtml("#AD9473")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.HoneyBarrel,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Honey Barrel",
-                    IconKey = "icon_honey_barrel",
-                    EnabledByDefault = true,
-                    ColorTolerance = 15.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#714837"),
-                        ColorTranslator.FromHtml("#61372F"),
-                        ColorTranslator.FromHtml("#4C2B23"),
-                        ColorTranslator.FromHtml("#4C2B33"),
-                        ColorTranslator.FromHtml("#824F3E"),
-                        ColorTranslator.FromHtml("#664444")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.WineFlask,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Wine Flask",
-                    IconKey = "icon_wine_flask",
-                    EnabledByDefault = true,
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-
-                        ColorTranslator.FromHtml("#542B2B"),
-                        ColorTranslator.FromHtml("#401F1F"),
-                        ColorTranslator.FromHtml("#3B1717"),
-                        ColorTranslator.FromHtml("#5F3636"),
-
-                        ColorTranslator.FromHtml("#75443B"),
-                        ColorTranslator.FromHtml("#824B3C")
-                    } },
-                new Item
-                {
-                    Name = ItemName.EmptyFlask,
-                    Type = ItemType.Resource,
-                    DisplayName = "Empty Flask",
-                    IconKey = "icon_empty_flask",
-                    EnabledByDefault = true,
-                    ColorTolerance = 15.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#371616"),
-                        ColorTranslator.FromHtml("#5C2B23"),
-                        ColorTranslator.FromHtml("#442222"),
-                        ColorTranslator.FromHtml("#281728"),
-                        ColorTranslator.FromHtml("#8C4A39"),
-                        ColorTranslator.FromHtml("#96543B")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Bandage,
-                    Type = ItemType.Consumable,
-                    DisplayName = "Bandage",
-                    IconKey = "icon_bandage",
-                    EnabledByDefault = true,
-                    ColorTolerance = 18.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#8A7979"),
-                        ColorTranslator.FromHtml("#B79E8E"),
-                        ColorTranslator.FromHtml("#7A626A"),
-                        ColorTranslator.FromHtml("#A38A82"),
-                        ColorTranslator.FromHtml("#8A798A"),
-                        ColorTranslator.FromHtml("#7D6D75")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperShard,
-                    Type = ItemType.Resource,
-                    DisplayName = "Copper Scrap",
-                    IconKey = "icon_copper_scrap",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-
-                        ColorTranslator.FromHtml("#A65D4C"),
-                        ColorTranslator.FromHtml("#965241"),
-                        ColorTranslator.FromHtml("#A66653"),
-
-                        ColorTranslator.FromHtml("#C87864"),
-                        ColorTranslator.FromHtml("#B86D58"),
-
-                        ColorTranslator.FromHtml("#6A4434"),
-                        ColorTranslator.FromHtml("#462F28")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Comb,
-                    Type = ItemType.Special,
-                    DisplayName = "Comb",
-                    IconKey = "icon_comb",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 18.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#DEBF9E"),
-                        ColorTranslator.FromHtml("#EDD9BD"),
-                        ColorTranslator.FromHtml("#EED6B4"),
-                        ColorTranslator.FromHtml("#E5C7A6"),
-                        ColorTranslator.FromHtml("#E9D2B1"),
-                        ColorTranslator.FromHtml("#F1E0C1"),
-                        ColorTranslator.FromHtml("#F6ECDB")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Mirror,
-                    Type = ItemType.Special,
-                    DisplayName = "Mirror",
-                    IconKey = "icon_mirror",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 15.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#EFEFEF"),
-                        ColorTranslator.FromHtml("#695B51"),
-                        ColorTranslator.FromHtml("#977F6F"),
-                        ColorTranslator.FromHtml("#E5D9CD"),
-                        ColorTranslator.FromHtml("#866D6C"),
-                        ColorTranslator.FromHtml("#868395")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Skull,
-                    Type = ItemType.Special,
-                    DisplayName = "Skull",
-                    IconKey = "icon_skull",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#7C6C5B"),
-                        ColorTranslator.FromHtml("#B0A599"),
-                        ColorTranslator.FromHtml("#6B5B43"),
-                        ColorTranslator.FromHtml("#ABA691"),
-                        ColorTranslator.FromHtml("#B7A88F"),
-                        ColorTranslator.FromHtml("#51402F"),
-                        ColorTranslator.FromHtml("#C9BBA5")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Lock,
-                    Type = ItemType.Resource,
-                    DisplayName = "Lock",
-                    IconKey = "icon_lock",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#754C3D"),
-                        ColorTranslator.FromHtml("#61556B"),
-                        ColorTranslator.FromHtml("#312118"),
-                        ColorTranslator.FromHtml("#7F7F83"),
-                        ColorTranslator.FromHtml("#5A6AA9"),
-                        ColorTranslator.FromHtml("#8D9193"),
-                        ColorTranslator.FromHtml("#916958")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Cords,
-                    Type = ItemType.Resource,
-                    DisplayName = "Cords",
-                    IconKey = "icon_cords",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#553834"),
-                        ColorTranslator.FromHtml("#413647"),
-                        ColorTranslator.FromHtml("#795747"),
-                        ColorTranslator.FromHtml("#452D2B"),
-                        ColorTranslator.FromHtml("#3A2939"),
-                        ColorTranslator.FromHtml("#512C1D"),
-                        ColorTranslator.FromHtml("#866657")
-                    }
-                },
                 new Item
                 {
                     Name = ItemName.IronGrate,
-                    Type = ItemType.Special,
+                    Type = ItemType.Resource,
                     DisplayName = "Iron Grate",
-                    IconKey = "icon_iron_grate",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
                     Colors = new List<Color>
                     {
-                        ColorTranslator.FromHtml("#261F28"),
-                        ColorTranslator.FromHtml("#5B4F57"),
-                        ColorTranslator.FromHtml("#584768"),
-                        ColorTranslator.FromHtml("#544753"),
-                        ColorTranslator.FromHtml("#695454"),
-                        ColorTranslator.FromHtml("#544354"),
-                        ColorTranslator.FromHtml("#796973")
+                        ColorTranslator.FromHtml("#54444C"),
+                        ColorTranslator.FromHtml("#2B2C2B"),
+                        ColorTranslator.FromHtml("#1F1F1F"),
+                        ColorTranslator.FromHtml("#171717"),
+                        ColorTranslator.FromHtml("#151515")
+                    },
+                    // Đặc trưng của Vỉ Sắt: Ánh tím/lam trên thanh lưới (B-G >= 7, R-G >= 7, Total >= 180)
+                    CustomEvaluator = pixels =>
+                    {
+                        int tanRope = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 10) && (p.G - p.B >= 10));
+                        if (tanRope >= 80) return 0.0;
+
+                        int bdMauve = pixels.Count(p => p.R >= 115 && p.R <= 155 && p.G >= 98 && p.G <= 135 && p.B >= 115 && p.B <= 155 && (p.R - p.G >= 13) && (p.B - p.G >= 10) && Math.Abs(p.R - p.B) <= 8);
+                        if (bdMauve >= 100) return 0.0;
+
+                        int lsCoolRim = pixels.Count(p => p.R >= 36 && p.R <= 62 && Math.Abs(p.R - p.G) <= 2 && (p.B - p.G >= 5) && (p.B - p.G <= 12));
+                        if (lsCoolRim >= 100) return 0.0;
+
+                        int meatRuby = pixels.Count(p => p.R >= 100 && p.R <= 220 && p.G >= 25 && p.G <= 105 && p.B >= 32 && p.B <= 118 && (p.R - p.G >= 68) && (p.R - p.B >= 55) && (p.B - p.G >= 4));
+                        if (meatRuby >= 100) return 0.0;
+
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        return purpleCount >= 50 ? (10000.0 + purpleCount) : 0.0;
                     }
                 },
                 new Item
@@ -583,181 +50,36 @@ namespace Engine.References.Models
                     Name = ItemName.Wire,
                     Type = ItemType.Resource,
                     DisplayName = "Wire",
-                    IconKey = "icon_wire",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.0,
                     Colors = new List<Color>
                     {
-                        ColorTranslator.FromHtml("#312B2B"),
-                        ColorTranslator.FromHtml("#604F4F"),
-                        ColorTranslator.FromHtml("#6A5A59"),
-                        ColorTranslator.FromHtml("#2F2727"),
-                        ColorTranslator.FromHtml("#302629"),
-                        ColorTranslator.FromHtml("#4F3F3F"),
-                        ColorTranslator.FromHtml("#665656")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.GoldRing,
-                    Type = ItemType.Special,
-                    DisplayName = "Gold Ring",
-                    IconKey = "icon_gold_ring",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
+                        ColorTranslator.FromHtml("#131313"),
+                        ColorTranslator.FromHtml("#111111"),
+                        ColorTranslator.FromHtml("#0B0B0B"),
+                        ColorTranslator.FromHtml("#0A0A0A")
+                    },
+                    // Đặc trưng của Dây Kẽm: Búi cuộn dây đồng rất dày đặc (R-G >= 10 có > 700 px),
+                    // khe bóng tối đen sâu giữa các vòng cuộn (Total <= 50, G - B <= 3, R >= G >= 600 px)
+                    // và hầu như không có rỉ sắt ngả lục (olive rust: G - B >= 4, <= 150 px), không có ánh tím của Vỉ Sắt, không có màu tan của Bowstring.
+                    CustomEvaluator = pixels =>
                     {
-                        ColorTranslator.FromHtml("#95643D"),
-                        ColorTranslator.FromHtml("#9D6F48"),
-                        ColorTranslator.FromHtml("#E9E4C3"),
-                        ColorTranslator.FromHtml("#D2B88D"),
-                        ColorTranslator.FromHtml("#956C43"),
-                        ColorTranslator.FromHtml("#A1824C"),
-                        ColorTranslator.FromHtml("#8E603A")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.TerrorScroll,
-                    Type = ItemType.Special,
-                    DisplayName = "Terror Scroll",
-                    IconKey = "icon_terror_scroll",
-                    EnabledByDefault = true,
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleCount >= 20) return 0.0;
 
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#D0B78E"),
-                        ColorTranslator.FromHtml("#9D7E64"),
-                        ColorTranslator.FromHtml("#552544"),
-                        ColorTranslator.FromHtml("#907769"),
-                        ColorTranslator.FromHtml("#593749"),
-                        ColorTranslator.FromHtml("#C3A787"),
-                        ColorTranslator.FromHtml("#37677D")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FarmingTools,
-                    Type = ItemType.Tool,
-                    DisplayName = "Farming Tools",
-                    IconKey = "icon_farming_tools",
-                    EnabledByDefault = true,
+                        int tanRope = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 10) && (p.G - p.B >= 10));
+                        if (tanRope >= 80) return 0.0;
 
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#7A7F82"),
-                        ColorTranslator.FromHtml("#845134"),
-                        ColorTranslator.FromHtml("#666671"),
-                        ColorTranslator.FromHtml("#794B35"),
-                        ColorTranslator.FromHtml("#545555"),
-                        ColorTranslator.FromHtml("#94613E"),
-                        ColorTranslator.FromHtml("#946443")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.WeightedMace,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Weighted Mace",
-                    IconKey = "icon_weighted_mace",
-                    EnabledByDefault = true,
+                        int copper = pixels.Count(p => (p.R - p.G >= 10));
+                        if (copper < 400) return 0.0;
 
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#B8816C"),
-                        ColorTranslator.FromHtml("#A87E6D"),
-                        ColorTranslator.FromHtml("#408AAD"),
-                        ColorTranslator.FromHtml("#60685F"),
-                        ColorTranslator.FromHtml("#735847"),
-                        ColorTranslator.FromHtml("#946E3B"),
-                        ColorTranslator.FromHtml("#544C5C")
-                    }
-                },
+                        int wireDarkBundle = pixels.Count(p => (p.R + p.G + p.B <= 50) && (p.G - p.B <= 3) && (p.R >= p.G));
+                        int chainOliveRust = pixels.Count(p => (p.G - p.B >= 4));
 
-                new Item
-                {
-                    Name = ItemName.Bowstring,
-                    Type = ItemType.Special,
-                    DisplayName = "Bowstring",
-                    IconKey = "icon_bowstring",
-                    EnabledByDefault = true,
+                        if (wireDarkBundle >= 600 && chainOliveRust <= 150)
+                        {
+                            return 10000.0 + (wireDarkBundle * 2.0) - (chainOliveRust * 2.0);
+                        }
 
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#7D6D5D"),
-                        ColorTranslator.FromHtml("#563E32"),
-                        ColorTranslator.FromHtml("#837458"),
-                        ColorTranslator.FromHtml("#7F6C55"),
-                        ColorTranslator.FromHtml("#5A4232"),
-                        ColorTranslator.FromHtml("#604F3F"),
-                        ColorTranslator.FromHtml("#655547")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.Candle,
-                    Type = ItemType.Resource,
-                    DisplayName = "Candle",
-                    IconKey = "icon_candle",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 15.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#BD9260"),
-                        ColorTranslator.FromHtml("#564535"),
-                        ColorTranslator.FromHtml("#63371D"),
-                        ColorTranslator.FromHtml("#FCD99D"),
-                        ColorTranslator.FromHtml("#845A38"),
-                        ColorTranslator.FromHtml("#CA9962"),
-                        ColorTranslator.FromHtml("#6C482F")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Silverware,
-                    Type = ItemType.Special,
-                    DisplayName = "Silverware",
-                    IconKey = "icon_silverware",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#59636E"),
-                        ColorTranslator.FromHtml("#8E9098"),
-                        ColorTranslator.FromHtml("#969FA6"),
-                        ColorTranslator.FromHtml("#666D71"),
-                        ColorTranslator.FromHtml("#696A70"),
-                        ColorTranslator.FromHtml("#95959B"),
-                        ColorTranslator.FromHtml("#8B8F96")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Hourglass,
-                    Type = ItemType.Special,
-                    DisplayName = "Hourglass",
-                    IconKey = "icon_hourglass",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 16.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#703120"),
-                        ColorTranslator.FromHtml("#7795A6"),
-                        ColorTranslator.FromHtml("#BDBDBD"),
-                        ColorTranslator.FromHtml("#B8B8A9"),
-                        ColorTranslator.FromHtml("#9B6A3B"),
-                        ColorTranslator.FromHtml("#9F4A34"),
-                        ColorTranslator.FromHtml("#AB7E49")
+                        return 0.0;
                     }
                 },
                 new Item
@@ -765,642 +87,918 @@ namespace Engine.References.Models
                     Name = ItemName.Chain,
                     Type = ItemType.Resource,
                     DisplayName = "Chain",
-                    IconKey = "icon_chain",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
                     Colors = new List<Color>
                     {
-                        ColorTranslator.FromHtml("#604F4A"),
-                        ColorTranslator.FromHtml("#5C4B4B"),
-                        ColorTranslator.FromHtml("#5E524A"),
-                        ColorTranslator.FromHtml("#85706D"),
-                        ColorTranslator.FromHtml("#1F1C1C"),
-                        ColorTranslator.FromHtml("#735950"),
-                        ColorTranslator.FromHtml("#9D8582")
+                        ColorTranslator.FromHtml("#322A2A"),
+                        ColorTranslator.FromHtml("#362E2E"),
+                        ColorTranslator.FromHtml("#332B2B"),
+                        ColorTranslator.FromHtml("#272727"),
+                        ColorTranslator.FromHtml("#080808")
+                    },
+                    // Đặc trưng của Xích Sắt: Các mắt xích sắt dày có vệt rỉ ngả lục/ô-liu (G - B >= 4, >= 180 px)
+                    // hoặc thân mắt xích xám tối (Total 35..55, |R-G| <= 2, |G-B| <= 2), bóng tối cuộn (wireDarkBundle) < 600 px, không có ánh tím của Vỉ Sắt, không có màu tan của Bowstring.
+                    CustomEvaluator = pixels =>
+                    {
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleCount >= 20) return 0.0;
+
+                        int tanRope = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 10) && (p.G - p.B >= 10));
+                        if (tanRope >= 80) return 0.0;
+
+                        int copper = pixels.Count(p => (p.R - p.G >= 7));
+                        if (copper < 200) return 0.0;
+
+                        int chainOliveRust = pixels.Count(p => (p.G - p.B >= 4));
+                        int chainIronGray = pixels.Count(p => (p.R + p.G + p.B >= 35) && (p.R + p.G + p.B <= 55) && Math.Abs(p.R - p.G) <= 2 && Math.Abs(p.G - p.B) <= 2);
+                        int wireDarkBundle = pixels.Count(p => (p.R + p.G + p.B <= 50) && (p.G - p.B <= 3) && (p.R >= p.G));
+
+                        if (chainOliveRust >= 180 || (chainIronGray >= 150 && wireDarkBundle < 600))
+                        {
+                            return 10000.0 + (chainOliveRust * 3.0) + (chainIronGray * 1.5);
+                        }
+
+                        return 0.0;
                     }
                 },
                 new Item
                 {
-                    Name = ItemName.StoneWeapon1,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Stone Weapon 1",
-                    IconKey = "icon_stone_weapon_1",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#787070"),
-                        ColorTranslator.FromHtml("#A46844"),
-                        ColorTranslator.FromHtml("#8D5830"),
-                        ColorTranslator.FromHtml("#2C2F3C"),
-                        ColorTranslator.FromHtml("#686060"),
-                        ColorTranslator.FromHtml("#8A593C"),
-                        ColorTranslator.FromHtml("#696161")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.WoodenSword,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Wooden Sword",
-                    IconKey = "icon_wooden_sword",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#84634D"),
-                        ColorTranslator.FromHtml("#807D9C"),
-                        ColorTranslator.FromHtml("#856F72"),
-                        ColorTranslator.FromHtml("#573C35"),
-                        ColorTranslator.FromHtml("#4B404C"),
-                        ColorTranslator.FromHtml("#474A5F"),
-                        ColorTranslator.FromHtml("#53422A")
-                    }
-                },new Item
-                {
-                    Name = ItemName.Sickle,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Sickle",
-                    IconKey = "icon_sickle",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#B2A7A4"),
-                        ColorTranslator.FromHtml("#A29292"),
-                        ColorTranslator.FromHtml("#C9B9B9"),
-                        ColorTranslator.FromHtml("#5E4138"),
-                        ColorTranslator.FromHtml("#837E7B"),
-                        ColorTranslator.FromHtml("#664338"),
-                        ColorTranslator.FromHtml("#EBE1D4")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperTrousers,
-                    Type = ItemType.Armor,
-                    DisplayName = "Copper Trousers",
-                    IconKey = "icon_copper_trousers",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#3B3239"),
-                        ColorTranslator.FromHtml("#362E36"),
-                        ColorTranslator.FromHtml("#45343D"),
-                        ColorTranslator.FromHtml("#493E3F"),
-                        ColorTranslator.FromHtml("#3F2F38"),
-                        ColorTranslator.FromHtml("#4B333B"),
-                        ColorTranslator.FromHtml("#483841")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperHauberk,
-                    Type = ItemType.Armor,
-                    DisplayName = "Copper Hauberk",
-                    IconKey = "icon_copper_hauberk",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#A15E55"),
-                        ColorTranslator.FromHtml("#5D3B40"),
-                        ColorTranslator.FromHtml("#5F3E45"),
-                        ColorTranslator.FromHtml("#372A32"),
-                        ColorTranslator.FromHtml("#452828"),
-                        ColorTranslator.FromHtml("#5C3C44"),
-                        ColorTranslator.FromHtml("#845253")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.LeatherHat,
-                    Type = ItemType.Armor,
-                    DisplayName = "Leather Hat",
-                    IconKey = "icon_leather_hat",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#835959"),
-                        ColorTranslator.FromHtml("#5C383A"),
-                        ColorTranslator.FromHtml("#181A20"),
-                        ColorTranslator.FromHtml("#4C2B2C"),
-                        ColorTranslator.FromHtml("#563434"),
-                        ColorTranslator.FromHtml("#583435"),
-                        ColorTranslator.FromHtml("#714F47")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.LeatherGlove,
-                    Type = ItemType.Armor,
-                    DisplayName = "Leather Glove",
-                    IconKey = "icon_leather_glove",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#8D755C"),
-                        ColorTranslator.FromHtml("#533A2A"),
-                        ColorTranslator.FromHtml("#31190D"),
-                        ColorTranslator.FromHtml("#8A7153"),
-                        ColorTranslator.FromHtml("#392317"),
-                        ColorTranslator.FromHtml("#392111"),
-                        ColorTranslator.FromHtml("#8E785C")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.LeatherBoots,
-                    Type = ItemType.Armor,
-                    DisplayName = "Leather Boots",
-                    IconKey = "icon_leather_boots",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#3E2E35"),
-                        ColorTranslator.FromHtml("#533D40"),
-                        ColorTranslator.FromHtml("#2E252D"),
-                        ColorTranslator.FromHtml("#796970"),
-                        ColorTranslator.FromHtml("#3D2C34"),
-                        ColorTranslator.FromHtml("#413239"),
-                        ColorTranslator.FromHtml("#7A6A71")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FibberHauberk,
-                    Type = ItemType.Armor,
-                    DisplayName = "Flax Hauberk",
-                    IconKey = "icon_fibber_hauberk",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#D2CABD"),
-                        ColorTranslator.FromHtml("#614F5B"),
-                        ColorTranslator.FromHtml("#886C67"),
-                        ColorTranslator.FromHtml("#9D7B78"),
-                        ColorTranslator.FromHtml("#4C3C43"),
-                        ColorTranslator.FromHtml("#DCCFBE"),
-                        ColorTranslator.FromHtml("#B7B0A0")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FibberTrousers,
-                    Type = ItemType.Armor,
-                    DisplayName = "Flax Trousers",
-                    IconKey = "icon_fibber_trousers",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#2E2E3F"),
-                        ColorTranslator.FromHtml("#282637"),
-                        ColorTranslator.FromHtml("#6F605B"),
-                        ColorTranslator.FromHtml("#574947"),
-                        ColorTranslator.FromHtml("#5F5250"),
-                        ColorTranslator.FromHtml("#34303D"),
-                        ColorTranslator.FromHtml("#3F3741")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.WoodenWeapon1,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Wooden Weapon 1",
-                    IconKey = "icon_wooden_weapon_1",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#4C3B49"),
-                        ColorTranslator.FromHtml("#6B4C3D"),
-                        ColorTranslator.FromHtml("#7F5437"),
-                        ColorTranslator.FromHtml("#4A3B47"),
-                        ColorTranslator.FromHtml("#CE9A74"),
-                        ColorTranslator.FromHtml("#8A5955"),
-                        ColorTranslator.FromHtml("#A9765D")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.StoneWeapon2,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Stone Weapon 2",
-                    IconKey = "icon_stone_weapon_2",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#908682"),
-                        ColorTranslator.FromHtml("#7B7375"),
-                        ColorTranslator.FromHtml("#6B473F"),
-                        ColorTranslator.FromHtml("#272935"),
-                        ColorTranslator.FromHtml("#614A55"),
-                        ColorTranslator.FromHtml("#313142"),
-                        ColorTranslator.FromHtml("#69454C")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.CopperHat,
-                    Type = ItemType.Armor,
-                    DisplayName = "Copper Hat",
-                    IconKey = "icon_copper_hat",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#835953"),
-                        ColorTranslator.FromHtml("#AA796B"),
-                        ColorTranslator.FromHtml("#B3796B"),
-                        ColorTranslator.FromHtml("#95625F"),
-                        ColorTranslator.FromHtml("#EB9981"),
-                        ColorTranslator.FromHtml("#FDB194"),
-                        ColorTranslator.FromHtml("#4F3636")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperGlove,
-                    Type = ItemType.Armor,
-                    DisplayName = "Copper Glove",
-                    IconKey = "icon_copper_glove",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#705156"),
-                        ColorTranslator.FromHtml("#63484B"),
-                        ColorTranslator.FromHtml("#A17877"),
-                        ColorTranslator.FromHtml("#5F464C"),
-                        ColorTranslator.FromHtml("#4F3F47"),
-                        ColorTranslator.FromHtml("#45282F"),
-                        ColorTranslator.FromHtml("#4C2C30")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperBoots,
-                    Type = ItemType.Armor,
-                    DisplayName = "Copper Boots",
-                    IconKey = "icon_copper_boots",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#422834"),
-                        ColorTranslator.FromHtml("#6B434A"),
-                        ColorTranslator.FromHtml("#38252E"),
-                        ColorTranslator.FromHtml("#32262E"),
-                        ColorTranslator.FromHtml("#885056"),
-                        ColorTranslator.FromHtml("#32212A"),
-                        ColorTranslator.FromHtml("#422831")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.LeatherHauberk,
-                    Type = ItemType.Armor,
-                    DisplayName = "Leather Hauberk",
-                    IconKey = "icon_leather_hauberk",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#594339"),
-                        ColorTranslator.FromHtml("#5B4439"),
-                        ColorTranslator.FromHtml("#BB7E68"),
-                        ColorTranslator.FromHtml("#643C38"),
-                        ColorTranslator.FromHtml("#8F5948"),
-                        ColorTranslator.FromHtml("#9B6455"),
-                        ColorTranslator.FromHtml("#271821")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.MapFragment,
-                    Type = ItemType.Special,
-                    DisplayName = "Map Fragment",
-                    IconKey = "icon_map_fragment",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#B29E81"),
-                        ColorTranslator.FromHtml("#6C4F33"),
-                        ColorTranslator.FromHtml("#D0C7B7"),
-                        ColorTranslator.FromHtml("#82725F"),
-                        ColorTranslator.FromHtml("#644C34"),
-                        ColorTranslator.FromHtml("#745852"),
-                        ColorTranslator.FromHtml("#5E4D3C")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.MorningStar,
-                    Type = ItemType.Armor,
-                    DisplayName = "Morning Star",
-                    IconKey = "icon_morning_star",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#835137"),
-                        ColorTranslator.FromHtml("#614E53"),
-                        ColorTranslator.FromHtml("#5D4D6F"),
-                        ColorTranslator.FromHtml("#393248"),
-                        ColorTranslator.FromHtml("#403133"),
-                        ColorTranslator.FromHtml("#745852"),
-                        ColorTranslator.FromHtml("#FCDCC5")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperWeapon1,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Vũ khí đồng 1",
-                    IconKey = "icon_copper_sword",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#7F5858"),
-                        ColorTranslator.FromHtml("#846665"),
-                        ColorTranslator.FromHtml("#EFBDB7"),
-                        ColorTranslator.FromHtml("#372A32"),
-                        ColorTranslator.FromHtml("#D9BAB1"),
-                        ColorTranslator.FromHtml("#826067"),
-                        ColorTranslator.FromHtml("#A27981")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Wheel,
-                    Type = ItemType.Special,
-                    DisplayName = "Wooden Wheel",
-                    IconKey = "icon_wheel",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#745345"),
-                        ColorTranslator.FromHtml("#2C3940"),
-                        ColorTranslator.FromHtml("#3A738D"),
-                        ColorTranslator.FromHtml("#51352F"),
-                        ColorTranslator.FromHtml("#6E4E43"),
-                        ColorTranslator.FromHtml("#885B52"),
-                        ColorTranslator.FromHtml("#513831")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.Tin,
+                    Name = ItemName.Bowstring,
                     Type = ItemType.Resource,
-                    DisplayName = "Tin",
-                    IconKey = "icon_tin",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
+                    DisplayName = "Bowstring",
                     Colors = new List<Color>
                     {
-                        ColorTranslator.FromHtml("#4B4B53"),
-                        ColorTranslator.FromHtml("#9B9B95"),
-                        ColorTranslator.FromHtml("#4D4D5B"),
-                        ColorTranslator.FromHtml("#C6C6B5"),
-                        ColorTranslator.FromHtml("#BBBBAD"),
-                        ColorTranslator.FromHtml("#6A6A75"),
-                        ColorTranslator.FromHtml("#E1E1CD")
+                        ColorTranslator.FromHtml("#5D4C3B"),
+                        ColorTranslator.FromHtml("#6F5E4D"),
+                        ColorTranslator.FromHtml("#7B6251"),
+                        ColorTranslator.FromHtml("#5A4938"),
+                        ColorTranslator.FromHtml("#3F3021"),
+                        ColorTranslator.FromHtml("#5B4253")
+                    },
+                    // Đặc trưng của Dây Cung (Bowstring): Sợi dây thừng màu nâu vàng (tan rope: R > G > B, R-G >= 10, G-B >= 10)
+                    // xuất hiện dày đặc >= 120 px ở mọi ô (các item khác chỉ có <= 48 px), kết hợp warmRope >= 180 px.
+                    // Nút thắt bọc chỉ tím nhẹ (purpleGrate < 100 px, khác hẳn Vỉ Sắt > 600 px).
+                    // Không có ánh vàng đồng thau dày đặc của Ghim Fibula (bronzeGold < 400, goldHighlight < 150).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleGrate = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleGrate >= 100) return 0.0;
+
+                        int bronzeGold = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 20) && (p.G - p.B >= 15) && (p.R + p.G + p.B >= 220));
+                        int goldHighlight = pixels.Count(p => p.R >= 130 && p.G >= 95 && p.B >= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 20) && (p.R + p.G + p.B >= 300));
+                        int skBonePale = pixels.Count(p => p.R >= 185 && p.G >= 175 && p.B >= 155 && (p.R - p.G >= 4) && (p.R - p.G <= 16) && (p.G - p.B >= 7) && (p.G - p.B <= 26) && (p.R + p.G + p.B >= 520));
+                        int aleMugDark = pixels.Count(p => p.R >= 55 && p.R <= 96 && p.G >= 29 && p.G <= 55 && p.B >= 29 && p.B <= 55 && Math.Abs(p.G - p.B) <= 3 && (p.R - p.G >= 26) && (p.R - p.G <= 45));
+                        if (bronzeGold >= 400 || goldHighlight >= 150 || skBonePale >= 150 || aleMugDark >= 450) return 0.0;
+
+                        int tanRope = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 10) && (p.G - p.B >= 10));
+                        int warmRope = pixels.Count(p => p.R >= p.G + 8 && p.G >= p.B + 5 && (p.R + p.G + p.B >= 150));
+
+                        if (tanRope >= 120 && warmRope >= 180)
+                        {
+                            return 10000.0 + (tanRope * 3.0) + warmRope;
+                        }
+
+                        return 0.0;
                     }
                 },
-                new Item
-                {
-                    Name = ItemName.EmptyVial,
-                    Type = ItemType.Special,
-                    DisplayName = "Empty Vial",
-                    IconKey = "icon_empty_vial",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#6E757E"),
-                        ColorTranslator.FromHtml("#8A9494"),
-                        ColorTranslator.FromHtml("#2E4B4E"),
-                        ColorTranslator.FromHtml("#445564"),
-                        ColorTranslator.FromHtml("#4B565E"),
-                        ColorTranslator.FromHtml("#84909C"),
-                        ColorTranslator.FromHtml("#364754")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.MandrakeTincture,
-                    Type = ItemType.Special,
-                    DisplayName = "Mandrake Tincture",
-                    IconKey = "icon_mandrake_tincture",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#CB9978"),
-                        ColorTranslator.FromHtml("#919CA7"),
-                        ColorTranslator.FromHtml("#E4D1A2"),
-                        ColorTranslator.FromHtml("#673D2B"),
-                        ColorTranslator.FromHtml("#EEE4C4"),
-                        ColorTranslator.FromHtml("#8D93AD"),
-                        ColorTranslator.FromHtml("#E9DAB7")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.SpikeMace,
-                    Type = ItemType.Armor,
-                    DisplayName = "Spike Mace",
-                    IconKey = "icon_spike_mace",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#9A5E45"),
-                        ColorTranslator.FromHtml("#8F5C3A"),
-                        ColorTranslator.FromHtml("#6C4C55"),
-                        ColorTranslator.FromHtml("#756057"),
-                        ColorTranslator.FromHtml("#514051"),
-                        ColorTranslator.FromHtml("#A46A46"),
-                        ColorTranslator.FromHtml("#B37751")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.CopperWeapon2,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Copper Weapon 2",
-                    IconKey = "icon_copper_weapon_2",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#A98075"),
-                        ColorTranslator.FromHtml("#8C5C59"),
-                        ColorTranslator.FromHtml("#F2BAA5"),
-                        ColorTranslator.FromHtml("#4B3135"),
-                        ColorTranslator.FromHtml("#A97A76"),
-                        ColorTranslator.FromHtml("#35262B"),
-                        ColorTranslator.FromHtml("#7C5355")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FlangedMace,
-                    Type = ItemType.Weapon,
-                    DisplayName = "Flanged Mace",
-                    IconKey = "icon_flanged_mace",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 14.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#A9897D"),
-                        ColorTranslator.FromHtml("#795858"),
-                        ColorTranslator.FromHtml("#916464"),
-                        ColorTranslator.FromHtml("#7B627B"),
-                        ColorTranslator.FromHtml("#665063"),
-                        ColorTranslator.FromHtml("#655251"),
-                        ColorTranslator.FromHtml("#7D5D61")
-                    }
-                },
-
-                new Item
-                {
-                    Name = ItemName.LeatherTrousers,
-                    Type = ItemType.Armor,
-                    DisplayName = "Leather Trousers",
-                    IconKey = "icon_leather_trousers",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.0,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#121214"),
-                        ColorTranslator.FromHtml("#24242B"),
-                        ColorTranslator.FromHtml("#453B3C"),
-                        ColorTranslator.FromHtml("#2F272F"),
-                        ColorTranslator.FromHtml("#2B252B"),
-                        ColorTranslator.FromHtml("#2A2930"),
-                        ColorTranslator.FromHtml("#292629")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FibberHat,
-                    Type = ItemType.Armor,
-                    DisplayName = "Flax Hat",
-                    IconKey = "icon_fibber_hat",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#967B57"),
-                        ColorTranslator.FromHtml("#241C28"),
-                        ColorTranslator.FromHtml("#3E3335"),
-                        ColorTranslator.FromHtml("#795A4A"),
-                        ColorTranslator.FromHtml("#C7AC75"),
-                        ColorTranslator.FromHtml("#664D3B"),
-                        ColorTranslator.FromHtml("#A07E5A")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FibberGlove,
-                    Type = ItemType.Armor,
-                    DisplayName = "Flax Boots",
-                    IconKey = "icon_fibber_glove",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#B09E81"),
-                        ColorTranslator.FromHtml("#5F5148"),
-                        ColorTranslator.FromHtml("#B09B7C"),
-                        ColorTranslator.FromHtml("#3F3D3D"),
-                        ColorTranslator.FromHtml("#C7B493"),
-                        ColorTranslator.FromHtml("#61564A"),
-                        ColorTranslator.FromHtml("#6C5B50")
-                    }
-                },
-                new Item
-                {
-                    Name = ItemName.FibberBoots,
-                    Type = ItemType.Armor,
-                    DisplayName = "Flax Glove",
-                    IconKey = "icon_fibber_boots",
-                    EnabledByDefault = true,
-
-                    ColorTolerance = 13.5,
-                    Colors = new List<Color>
-                    {
-                        ColorTranslator.FromHtml("#45393B"),
-                        ColorTranslator.FromHtml("#9B826A"),
-                        ColorTranslator.FromHtml("#A68B70"),
-                        ColorTranslator.FromHtml("#A98F72"),
-                        ColorTranslator.FromHtml("#836959"),
-                        ColorTranslator.FromHtml("#241B17"),
-                        ColorTranslator.FromHtml("#A78A72")
-                    }
-                }
-                ,
                 new Item
                 {
                     Name = ItemName.Fibula,
                     Type = ItemType.Special,
                     DisplayName = "Fibula",
-                    IconKey = "icon_fibula",
-                    EnabledByDefault = true,
-                    ColorTolerance = 13.0,
                     Colors = new List<Color>
                     {
-                        ColorTranslator.FromHtml("#D5B988"),
-                        ColorTranslator.FromHtml("#936432"),
-                        ColorTranslator.FromHtml("#694227"),
-                        ColorTranslator.FromHtml("#916C41"),
-                        ColorTranslator.FromHtml("#9A6E46"),
-                        ColorTranslator.FromHtml("#2B2A2A"),
-                        ColorTranslator.FromHtml("#CFB37A")
+                        ColorTranslator.FromHtml("#7D5B4A"),
+                        ColorTranslator.FromHtml("#775544"),
+                        ColorTranslator.FromHtml("#664422"),
+                        ColorTranslator.FromHtml("#DDCC88"),
+                        ColorTranslator.FromHtml("#9F6C4A"),
+                        ColorTranslator.FromHtml("#60472E"),
+                        ColorTranslator.FromHtml("#936A41")
+                    },
+                    // Đặc trưng của Ghim Cài Áo (Fibula): Thân ghim bằng đồng đỏ sẫm (fibDarkBronze: R[95..135], G[60..95], B[30..75] >= 240 px, trung bình 500-760 px).
+                    // Tỷ lệ fibDarkBronze >= ringGoldBody * 1.5 để phân biệt tuyệt đối với Nhẫn Vàng GoldRing.
+                    // Không có ánh tím Vỉ Sắt (purpleGrate < 100 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleGrate = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleGrate >= 100) return 0.0;
+
+                        int fibDarkBronze = pixels.Count(p => (p.R >= 95 && p.R <= 135) && (p.G >= 60 && p.G <= 95) && (p.B >= 30 && p.B <= 75) && (p.R - p.G >= 25) && (p.G - p.B >= 15));
+                        int ringGoldBody = pixels.Count(p => (p.R >= 145 && p.R <= 165) && (p.G >= 105 && p.G <= 125) && (p.B >= 65 && p.B <= 80) && (p.R - p.G >= 35) && (p.G - p.B >= 35));
+                        int goldHighlight = pixels.Count(p => p.R >= 130 && p.G >= 95 && p.B >= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 20) && (p.R + p.G + p.B >= 300));
+                        int clothLinen = pixels.Count(p => p.R >= 145 && p.R <= 185 && p.G >= 95 && p.G <= 135 && p.B >= 65 && p.B <= 95 && (p.R - p.G >= 40) && (p.R - p.G <= 58) && (p.G - p.B >= 20) && (p.G - p.B <= 36));
+                        int clothPeach = pixels.Count(p => p.R >= 120 && p.R <= 185 && (p.R - p.G >= 42) && (p.G - p.B >= 15) && (p.G - p.B <= 33));
+                        int ropeMid = pixels.Count(p => p.R >= 115 && p.R <= 155 && p.G >= 90 && p.G <= 130 && p.B >= 68 && p.B <= 98 && (p.R - p.G >= 20) && (p.R - p.G <= 29) && (p.G - p.B >= 20) && (p.G - p.B <= 36));
+                        int ropeDark = pixels.Count(p => p.R >= 85 && p.R <= 115 && p.G >= 60 && p.G <= 88 && p.B >= 45 && p.B <= 72 && (p.R - p.G >= 20) && (p.R - p.G <= 28) && (p.G - p.B >= 12) && (p.G - p.B <= 22));
+                        int hbMahogany = pixels.Count(p => p.R >= 65 && p.R <= 92 && p.G >= 35 && p.G <= 58 && p.B >= 42 && p.B <= 66 && (p.R - p.G >= 25) && (p.B - p.G >= 3));
+                        int pmpCream = pixels.Count(p => p.R >= 205 && p.G >= 172 && p.B >= 130 && (p.R - p.G >= 15) && (p.R - p.G <= 45) && (p.G - p.B >= 20) && (p.G - p.B <= 52));
+                        int pmpIvory = pixels.Count(p => p.R >= 210 && p.G >= 195 && p.B >= 160 && (p.R - p.G >= 4) && (p.G - p.B >= 18) && (p.R + p.G + p.B >= 565));
+                        int cndHighlight = pixels.Count(p => p.R >= 165 && p.R <= 230 && p.G >= 125 && p.G <= 190 && p.B >= 70 && p.B <= 125 && (p.R - p.G >= 28) && (p.R - p.G <= 52) && (p.G - p.B >= 48));
+                        int flxStrand = pixels.Count(p => p.R >= 145 && p.R <= 182 && p.G >= 112 && p.G <= 148 && p.B >= 78 && p.B <= 114 && (p.R - p.G >= 28) && (p.R - p.G <= 38) && (p.G - p.B >= 28) && (p.G - p.B <= 38));
+
+                        if (clothPeach < 250 && clothLinen < 200 && ropeMid < 120 && ropeDark < 120 && hbMahogany < 45 && pmpCream < 250 && pmpIvory < 120 && cndHighlight < 320 && flxStrand < 120 && fibDarkBronze >= 240 && fibDarkBronze >= ringGoldBody * 1.5 && goldHighlight >= 200)
+                        {
+                            return 10000.0 + (fibDarkBronze * 3.0) + goldHighlight;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.GoldRing,
+                    Type = ItemType.Special,
+                    DisplayName = "Gold Ring",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#9A7148"),
+                        ColorTranslator.FromHtml("#8E5433"),
+                        ColorTranslator.FromHtml("#8E5634"),
+                        ColorTranslator.FromHtml("#8D5A38"),
+                        ColorTranslator.FromHtml("#AB8A58"),
+                        ColorTranslator.FromHtml("#8B5836")
+                    },
+                    // Đặc trưng của Nhẫn Vàng (Gold Ring): Thân nhẫn vàng rực sáng (ringGoldBody: R[145..165], G[105..125], B[65..80] >= 180 px, trung bình 530-580 px),
+                    // dải phản quang màu cam đồng (ringCopBand: R[135..148], G[80..95], B[45..60] đạt 360-390 px).
+                    // fibDarkBronze <= 200 px và ringGoldBody >= fibDarkBronze * 1.5 loại trừ hoàn toàn Fibula (Fibula có fibDarkBronze >= 500-760 px).
+                    // Không có ánh tím Vỉ Sắt (purpleGrate < 100 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleGrate = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleGrate >= 100) return 0.0;
+
+                        int ringCopBand = pixels.Count(p => (p.R >= 135 && p.R <= 148) && (p.G >= 80 && p.G <= 95) && (p.B >= 45 && p.B <= 60) && (p.R - p.G >= 48));
+                        int ringGoldBody = pixels.Count(p => (p.R >= 145 && p.R <= 165) && (p.G >= 105 && p.G <= 125) && (p.B >= 65 && p.B <= 80) && (p.R - p.G >= 35) && (p.G - p.B >= 35));
+                        int fibDarkBronze = pixels.Count(p => (p.R >= 95 && p.R <= 135) && (p.G >= 60 && p.G <= 95) && (p.B >= 30 && p.B <= 75) && (p.R - p.G >= 25) && (p.G - p.B >= 15));
+
+                        if (ringGoldBody >= 180 && fibDarkBronze <= 200 && ringGoldBody >= fibDarkBronze * 1.5)
+                        {
+                            return 10000.0 + (ringGoldBody * 4.0) + ringCopBand;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Lock,
+                    Type = ItemType.Resource,
+                    DisplayName = "Lock",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#4A2817"),
+                        ColorTranslator.FromHtml("#69402F"),
+                        ColorTranslator.FromHtml("#6A4130"),
+                        ColorTranslator.FromHtml("#6D4433"),
+                        ColorTranslator.FromHtml("#6C4332"),
+                        ColorTranslator.FromHtml("#754C3B"),
+                        ColorTranslator.FromHtml("#302018"),
+                        ColorTranslator.FromHtml("#54524A")
+                    },
+                    // Đặc trưng của Ổ Khóa (Lock): Thân khóa bằng đồng nâu sẫm (lockBrownBody: R[65..120], G[35..75], B[20..55], R-G >= 20, G-B >= 10 đạt >= 500 px),
+                    // càng khóa kim loại xám bạc (steelShackle: R,G,B[60..155], |R-G| <= 12, |G-B| <= 12, Total >= 200 đạt >= 150 px).
+                    // Không có điểm sáng vàng chói của Fibula/GoldRing (goldHighlight < 120 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int lockBrownBody = pixels.Count(p => p.R >= 65 && p.R <= 120 && p.G >= 35 && p.G <= 75 && p.B >= 20 && p.B <= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 10));
+                        int steelShackle = pixels.Count(p => p.R >= 60 && p.R <= 150 && p.G >= 60 && p.G <= 150 && p.B >= 60 && p.B <= 155 && Math.Abs(p.R - p.G) <= 12 && Math.Abs(p.G - p.B) <= 12 && (p.R + p.G + p.B >= 200));
+                        int goldHighlight = pixels.Count(p => p.R >= 130 && p.G >= 95 && p.B >= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 20) && (p.R + p.G + p.B >= 300));
+
+                        if (lockBrownBody >= 500 && steelShackle >= 150 && goldHighlight < 120)
+                        {
+                            return 10000.0 + (lockBrownBody * 2.0) + (steelShackle * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Cords,
+                    Type = ItemType.Resource,
+                    DisplayName = "Cords",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#2B1A23"),
+                        ColorTranslator.FromHtml("#33232B"),
+                        ColorTranslator.FromHtml("#2F1F27"),
+                        ColorTranslator.FromHtml("#554444"),
+                        ColorTranslator.FromHtml("#302028"),
+                        ColorTranslator.FromHtml("#443344"),
+                        ColorTranslator.FromHtml("#27161F"),
+                        ColorTranslator.FromHtml("#502F27")
+                    },
+                    // Đặc trưng của Dây Da (Cords): Vùng bóng tối giữa các nếp gấp cuộn dây da có ánh tím/nâu tía (wineShadow: R > G, B - G >= 5, Total <= 160 đạt >= 400 px, thực tế > 1000 px),
+                    // thân da màu sô-cô-la tối (chocoBody: R[35..90], G[20..55], B[25..55], R - G >= 12 đạt >= 800 px, thực tế > 2000 px),
+                    // không có điểm sáng vàng chói (goldHighlight < 100 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int wineShadow = pixels.Count(p => (p.R > p.G) && (p.B - p.G >= 5) && (p.R + p.G + p.B <= 160));
+                        int chocoBody = pixels.Count(p => p.R >= 35 && p.R <= 90 && p.G >= 20 && p.G <= 55 && p.B >= 25 && p.B <= 55 && (p.R - p.G >= 12));
+                        int goldHighlight = pixels.Count(p => p.R >= 130 && p.G >= 95 && p.B >= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 20) && (p.R + p.G + p.B >= 300));
+                        int flkDeepOxblood = pixels.Count(p => p.R >= 44 && p.R <= 78 && p.G >= 14 && p.G <= 28 && p.B >= 14 && p.B <= 28 && (p.R - p.G >= 27) && Math.Abs(p.G - p.B) <= 5);
+
+                        if (wineShadow >= 400 && chocoBody >= 800 && goldHighlight < 100 && flkDeepOxblood < 300)
+                        {
+                            return 10000.0 + (wineShadow * 3.0) + chocoBody;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Leather,
+                    Type = ItemType.Resource,
+                    DisplayName = "Leather",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#482716"),
+                        ColorTranslator.FromHtml("#543323"),
+                        ColorTranslator.FromHtml("#502F1F"),
+                        ColorTranslator.FromHtml("#523121"),
+                        ColorTranslator.FromHtml("#583727"),
+                        ColorTranslator.FromHtml("#401F16"),
+                        ColorTranslator.FromHtml("#4F2D1C"),
+                        ColorTranslator.FromHtml("#2E150D")
+                    },
+                    // Đặc trưng của Da Thuộc (Leather): Thân tấm da màu nâu da bò (saddleBrown: R[60..100], G[30..65], B[15..45], R-G >= 25, G-B >= 10 đạt >= 700 px, thực tế 1600-1750 px),
+                    // nếp gấp cuộn da màu nâu tối (leatherCrease: R[40..65], G[18..35], B[10..25], R-G >= 20, G-B >= 5 đạt >= 300 px, thực tế > 800 px).
+                    // Không có càng khóa thép (steelShackle <= 50 px, khác Lock), không có bóng tím/rượu (wineShadow < 250 px, khác Cords).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int saddleBrown = pixels.Count(p => p.R >= 60 && p.R <= 100 && p.G >= 30 && p.G <= 65 && p.B >= 15 && p.B <= 45 && (p.R - p.G >= 25) && (p.G - p.B >= 10));
+                        int leatherCrease = pixels.Count(p => p.R >= 40 && p.R <= 65 && p.G >= 18 && p.G <= 35 && p.B >= 10 && p.B <= 25 && (p.R - p.G >= 20) && (p.G - p.B >= 5));
+                        int steelShackle = pixels.Count(p => p.R >= 60 && p.R <= 150 && p.G >= 60 && p.G <= 150 && p.B >= 60 && p.B <= 155 && Math.Abs(p.R - p.G) <= 12 && Math.Abs(p.G - p.B) <= 12 && (p.R + p.G + p.B >= 200));
+                        int wineShadow = pixels.Count(p => (p.R > p.G) && (p.B - p.G >= 5) && (p.R + p.G + p.B <= 160));
+
+                        if (saddleBrown >= 700 && leatherCrease >= 300 && steelShackle <= 50 && wineShadow < 250)
+                        {
+                            return 10000.0 + (saddleBrown * 2.0) + (leatherCrease * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Cloth,
+                    Type = ItemType.Resource,
+                    DisplayName = "Cloth",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#A9774E"),
+                        ColorTranslator.FromHtml("#97664D"),
+                        ColorTranslator.FromHtml("#9C6B52"),
+                        ColorTranslator.FromHtml("#A67453"),
+                        ColorTranslator.FromHtml("#AE7C5B"),
+                        ColorTranslator.FromHtml("#B38258"),
+                        ColorTranslator.FromHtml("#A06F4E"),
+                        ColorTranslator.FromHtml("#A57352")
+                    },
+                    // Đặc trưng của Vải (Cloth): Mặt vải dệt màu be nâu đào đặc trưng (clothPeach: R[120..185], R-G >= 42, G-B[15..33] đạt >= 500 px, thực tế > 1580 px),
+                    // dải sợi dệt sáng màu (clothLinen: R[145..185], G[95..135], B[65..95], R-G[40..58], G-B[20..36] đạt >= 350 px, thực tế 866-902 px).
+                    // Loại trừ ThickCloth (có >= 230 px tcTaupe sáng kem nhạt trong khi Cloth chỉ <= 12 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int oakAmber = pixels.Count(p => p.R >= 125 && p.R <= 180 && p.G >= 75 && p.G <= 130 && p.B >= 25 && p.B <= 80 && (p.R - p.G >= 45) && (p.G - p.B >= 45));
+                        int oakDarkGold = pixels.Count(p => p.R >= 110 && p.R <= 160 && p.G >= 60 && p.G <= 108 && p.B >= 22 && p.B <= 60 && (p.R - p.G >= 45) && (p.G - p.B >= 30) && (p.R + p.G + p.B <= 320));
+                        if (oakAmber >= 120 || oakDarkGold >= 200) return 0.0;
+
+                        int tcTaupe = pixels.Count(p => p.R >= 175 && p.R <= 198 && p.G >= 134 && p.B >= 102 && (p.R - p.G >= 35) && (p.R - p.G <= 44) && (p.G - p.B >= 28) && (p.G - p.B <= 38));
+                        if (tcTaupe >= 60) return 0.0;
+
+                        int clothLinen = pixels.Count(p => p.R >= 145 && p.R <= 185 && p.G >= 95 && p.G <= 135 && p.B >= 65 && p.B <= 95 && (p.R - p.G >= 40) && (p.R - p.G <= 58) && (p.G - p.B >= 20) && (p.G - p.B <= 36));
+                        int clothPeach = pixels.Count(p => p.R >= 120 && p.R <= 185 && (p.R - p.G >= 42) && (p.G - p.B >= 15) && (p.G - p.B <= 33));
+
+                        if (clothPeach >= 500 && clothLinen >= 350)
+                        {
+                            return 10000.0 + (clothLinen * 2.0) + clothPeach;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.ThickCloth,
+                    Type = ItemType.Resource,
+                    DisplayName = "Thick Cloth",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#CB9968"),
+                        ColorTranslator.FromHtml("#B78E6D"),
+                        ColorTranslator.FromHtml("#B48B6A"),
+                        ColorTranslator.FromHtml("#CC9A69"),
+                        ColorTranslator.FromHtml("#BB9271"),
+                        ColorTranslator.FromHtml("#B38A69"),
+                        ColorTranslator.FromHtml("#BF9675"),
+                        ColorTranslator.FromHtml("#B6845B")
+                    },
+                    // Đặc trưng của Vải dày (Thick Cloth): Các nếp vải kem nâu sáng đặc trưng (tcTaupe >= 80 px, thực tế 230-264 px; tcCream >= 220 px, thực tế 500-550 px)
+                    // kết hợp nền vải nâu đào (clothPeach >= 500, clothLinen >= 350). Hoàn toàn tách biệt với Cloth thường (tcTaupe chỉ 4-12 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int oakAmber = pixels.Count(p => p.R >= 125 && p.R <= 180 && p.G >= 75 && p.G <= 130 && p.B >= 25 && p.B <= 80 && (p.R - p.G >= 45) && (p.G - p.B >= 45));
+                        int oakDarkGold = pixels.Count(p => p.R >= 110 && p.R <= 160 && p.G >= 60 && p.G <= 108 && p.B >= 22 && p.B <= 60 && (p.R - p.G >= 45) && (p.G - p.B >= 30) && (p.R + p.G + p.B <= 320));
+                        if (oakAmber >= 80 || oakDarkGold >= 150) return 0.0;
+
+                        int tcTaupe = pixels.Count(p => p.R >= 175 && p.R <= 198 && p.G >= 134 && p.B >= 102 && (p.R - p.G >= 35) && (p.R - p.G <= 44) && (p.G - p.B >= 28) && (p.G - p.B <= 38));
+                        int tcCream = pixels.Count(p => p.R >= 178 && p.G >= 138 && p.B >= 104 && (p.R - p.G >= 35) && (p.G - p.B >= 28) && (p.R + p.G + p.B >= 420));
+                        int clothLinen = pixels.Count(p => p.R >= 145 && p.R <= 185 && p.G >= 95 && p.G <= 135 && p.B >= 65 && p.B <= 95 && (p.R - p.G >= 40) && (p.R - p.G <= 58) && (p.G - p.B >= 20) && (p.G - p.B <= 36));
+                        int clothPeach = pixels.Count(p => p.R >= 120 && p.R <= 185 && (p.R - p.G >= 42) && (p.G - p.B >= 15) && (p.G - p.B <= 33));
+
+                        if (tcTaupe >= 80 && tcCream >= 220 && clothPeach >= 500 && clothLinen >= 350)
+                        {
+                            return 10000.0 + (tcTaupe * 5.0) + (tcCream * 2.0) + clothLinen;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Rope,
+                    Type = ItemType.Resource,
+                    DisplayName = "Rope",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#907756"),
+                        ColorTranslator.FromHtml("#866D54"),
+                        ColorTranslator.FromHtml("#856C53"),
+                        ColorTranslator.FromHtml("#8E6D54"),
+                        ColorTranslator.FromHtml("#7B6249"),
+                        ColorTranslator.FromHtml("#634A3A"),
+                        ColorTranslator.FromHtml("#624939"),
+                        ColorTranslator.FromHtml("#614837")
+                    },
+                    // Đặc trưng của Dây thừng (Rope): Sợi thừng xoắn màu be xám nâu xỉn đặc trưng (ropeMid: R[115..155], G[90..130], B[68..98], R-G[20..29] >= 200 px, thực tế 622-692 px)
+                    // và nếp tối xoắn (ropeDark: R[85..115], G[60..88], B[45..72], R-G[20..28] >= 120 px, thực tế 392-494 px).
+                    // Hoàn toàn tách biệt với Fibula/GoldRing/Cloth/Bowstring (các item khác có ropeMid <= 69, ropeDark <= 80).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleGrate = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleGrate >= 100) return 0.0;
+
+                        int ropeMid = pixels.Count(p => p.R >= 115 && p.R <= 155 && p.G >= 90 && p.G <= 130 && p.B >= 68 && p.B <= 98 && (p.R - p.G >= 20) && (p.R - p.G <= 29) && (p.G - p.B >= 20) && (p.G - p.B <= 36));
+                        int ropeDark = pixels.Count(p => p.R >= 85 && p.R <= 115 && p.G >= 60 && p.G <= 88 && p.B >= 45 && p.B <= 72 && (p.R - p.G >= 20) && (p.R - p.G <= 28) && (p.G - p.B >= 12) && (p.G - p.B <= 22));
+
+                        if (ropeMid >= 200 && ropeDark >= 120)
+                        {
+                            return 10000.0 + (ropeMid * 3.0) + (ropeDark * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.HoneyBarrel,
+                    Type = ItemType.Consumable,
+                    DisplayName = "Honey Barrel",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#714837"),
+                        ColorTranslator.FromHtml("#61372F"),
+                        ColorTranslator.FromHtml("#824F3E"),
+                        ColorTranslator.FromHtml("#52313A"),
+                        ColorTranslator.FromHtml("#502F37"),
+                        ColorTranslator.FromHtml("#4C2B33"),
+                        ColorTranslator.FromHtml("#A97F56"),
+                        ColorTranslator.FromHtml("#A37950")
+                    },
+                    // Đặc trưng của Thùng mật ong (Honey Barrel): Thân thùng gỗ hai sắc thái rõ rệt — bóng gỗ đỏ tía bên trái (hbMahogany: R[65..92], G[35..58], B[42..66], B-G >= 3 đạt >= 90 px, thực tế 409-484 px),
+                    // thân gỗ nâu tuyết tùng (hbCedar >= 220 px, thực tế 830-1010 px) và gỗ sáng bên phải (hbWarmWood >= 180 px, thực tế 646-782 px).
+                    // Không dùng ngưỡng purpleGrate < 100 vì bóng gỗ đỏ tía (#52313A) có B-G=9 và R+G+B=189.
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int hbMahogany = pixels.Count(p => p.R >= 65 && p.R <= 92 && p.G >= 35 && p.G <= 58 && p.B >= 42 && p.B <= 66 && (p.R - p.G >= 25) && (p.B - p.G >= 3));
+                        int hbCedar = pixels.Count(p => p.R >= 88 && p.R <= 145 && p.G >= 48 && p.G <= 92 && p.B >= 38 && p.B <= 75 && (p.R - p.G >= 35) && (p.G - p.B >= 4) && (p.G - p.B <= 22));
+                        int hbWarmWood = pixels.Count(p => p.R >= 145 && p.R <= 190 && p.G >= 100 && p.G <= 145 && p.B >= 65 && p.B <= 105 && (p.R - p.G >= 34) && (p.G - p.B >= 28));
+
+                        if (hbMahogany >= 90 && hbCedar >= 220 && hbWarmWood >= 180)
+                        {
+                            return 10000.0 + (hbMahogany * 4.0) + (hbWarmWood * 2.0) + hbCedar;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Mirror,
+                    Type = ItemType.Special,
+                    DisplayName = "Mirror",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#BABABA"),
+                        ColorTranslator.FromHtml("#BBBBBB"),
+                        ColorTranslator.FromHtml("#B8B8B8"),
+                        ColorTranslator.FromHtml("#BCBCBC"),
+                        ColorTranslator.FromHtml("#7F6666"),
+                        ColorTranslator.FromHtml("#A08877"),
+                        ColorTranslator.FromHtml("#A38A79"),
+                        ColorTranslator.FromHtml("#867E8E")
+                    },
+                    // Đặc trưng của Gương (Mirror): Viền bạc sáng trung tính rất cao (mirrorSilver: R[165..225], |R-G| <= 5, |G-B| <= 5 đạt >= 150 px, thực tế 493-603 px,
+                    // các vật phẩm khác <= 33 px) kết hợp mặt gương nâu hồng/be nhạt (mirrorGlass >= 250 px, thực tế 707-738 px; mirrorMauve >= 100 px, thực tế 330-363 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int mirrorSilver = pixels.Count(p => p.R >= 165 && p.R <= 225 && Math.Abs(p.R - p.G) <= 5 && Math.Abs(p.G - p.B) <= 5);
+                        int mirrorGlass = pixels.Count(p => p.R >= 120 && p.R <= 175 && p.G >= 95 && p.G <= 148 && p.B >= 95 && p.B <= 135 && (p.R - p.G >= 18) && (p.G - p.B >= 0) && (p.G - p.B <= 22));
+                        int mirrorMauve = pixels.Count(p => p.R >= 115 && p.R <= 145 && p.G >= 95 && p.G <= 118 && p.B >= 95 && p.B <= 118 && (p.R - p.G >= 18) && Math.Abs(p.G - p.B) <= 5);
+
+                        if (mirrorSilver >= 150 && mirrorGlass >= 250 && mirrorMauve >= 100)
+                        {
+                            return 10000.0 + (mirrorSilver * 4.0) + (mirrorMauve * 2.0) + mirrorGlass;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Silverware,
+                    DisplayName = "Silverware",
+                    Type = ItemType.Special,
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#848484"),
+                        ColorTranslator.FromHtml("#939393")
+                    },
+                    CustomEvaluator = (pixels) =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleGrate = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        int mirrorGlass = pixels.Count(p => p.R >= 120 && p.R <= 175 && p.G >= 95 && p.G <= 148 && p.B >= 95 && p.B <= 135 && (p.R - p.G >= 18) && (p.G - p.B >= 0) && (p.G - p.B <= 22));
+                        int lockBrownBody = pixels.Count(p => p.R >= 65 && p.R <= 120 && p.G >= 35 && p.G <= 75 && p.B >= 20 && p.B <= 55 && (p.R - p.G >= 20) && (p.G - p.B >= 10));
+
+                        if (purpleGrate >= 30 || mirrorGlass >= 30 || lockBrownBody >= 50) return 0.0;
+
+                        int silvCool = pixels.Count(p => p.R >= 120 && p.R <= 235 && p.G >= 120 && p.G <= 235 && p.B >= 120 && p.B <= 240 && Math.Abs(p.R - p.G) <= 6 && (p.B - p.G >= -2) && (p.B - p.G <= 18));
+                        int silvMid = pixels.Count(p => p.R >= 125 && p.R <= 165 && p.G >= 125 && p.G <= 165 && p.B >= 125 && p.B <= 175 && Math.Abs(p.R - p.G) <= 5 && (p.B - p.G >= 0) && (p.B - p.G <= 15));
+
+                        if (silvCool >= 110 && silvMid >= 55)
+                        {
+                            return 10000.0 + (silvCool * 4.0) + (silvMid * 3.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Bandage,
+                    Type = ItemType.Consumable,
+                    DisplayName = "Bandage",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#897878"),
+                        ColorTranslator.FromHtml("#8A7979"),
+                        ColorTranslator.FromHtml("#877676"),
+                        ColorTranslator.FromHtml("#B79E8E"),
+                        ColorTranslator.FromHtml("#A88F87"),
+                        ColorTranslator.FromHtml("#8C7B8C")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int mirrorSilver = pixels.Count(p => p.R >= 165 && p.R <= 225 && Math.Abs(p.R - p.G) <= 5 && Math.Abs(p.G - p.B) <= 5);
+                        if (mirrorSilver >= 80) return 0.0;
+
+                        int bdMauve = pixels.Count(p => p.R >= 115 && p.R <= 155 && p.G >= 98 && p.G <= 135 && p.B >= 115 && p.B <= 155 && (p.R - p.G >= 13) && (p.B - p.G >= 10) && Math.Abs(p.R - p.B) <= 8);
+                        int bdCream = pixels.Count(p => p.R >= 158 && p.R <= 195 && p.G >= 132 && p.G <= 168 && p.B >= 122 && p.B <= 155 && (p.R - p.G >= 18) && (p.R - p.G <= 30) && (p.G - p.B >= 4) && (p.G - p.B <= 20));
+                        int bdTaupe = pixels.Count(p => p.R >= 120 && p.R <= 155 && p.G >= 103 && p.G <= 138 && p.B >= 103 && p.B <= 145 && (p.R - p.G >= 13) && (p.R - p.G <= 23) && Math.Abs(p.G - p.B) <= 5);
+
+                        if (bdMauve >= 120 && bdCream >= 140 && bdTaupe >= 140)
+                        {
+                            return 10000.0 + (bdMauve * 4.0) + (bdCream * 2.0) + bdTaupe;
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.LeekSeed,
+                    Type = ItemType.Resource,
+                    DisplayName = "Leek Seed",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#211921"),
+                        ColorTranslator.FromHtml("#241C24"),
+                        ColorTranslator.FromHtml("#251D25"),
+                        ColorTranslator.FromHtml("#33333B"),
+                        ColorTranslator.FromHtml("#2A2A32"),
+                        ColorTranslator.FromHtml("#282028")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleCount >= 200) return 0.0;
+
+                        int lsCoolRim = pixels.Count(p => p.R >= 36 && p.R <= 62 && Math.Abs(p.R - p.G) <= 2 && (p.B - p.G >= 5) && (p.B - p.G <= 12));
+                        int lsDarkPurp = pixels.Count(p => p.R >= 26 && p.R <= 70 && p.G >= 18 && p.G <= 62 && p.B >= 26 && p.B <= 70 && (p.R - p.G >= 6) && (p.B - p.G >= 6) && Math.Abs(p.R - p.B) <= 4 && (p.R + p.G + p.B <= 195));
+
+                        if (lsCoolRim >= 180 && lsDarkPurp >= 180)
+                        {
+                            return 10000.0 + (lsCoolRim * 3.0) + (lsDarkPurp * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.OakSeed,
+                    Type = ItemType.Resource,
+                    DisplayName = "Oak Seed",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#8E5B28"),
+                        ColorTranslator.FromHtml("#8D5A27"),
+                        ColorTranslator.FromHtml("#885522"),
+                        ColorTranslator.FromHtml("#915E2B"),
+                        ColorTranslator.FromHtml("#A76D44"),
+                        ColorTranslator.FromHtml("#AA7744")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        if (purpleCount >= 50) return 0.0;
+
+                        int oakAmber = pixels.Count(p => p.R >= 125 && p.R <= 180 && p.G >= 75 && p.G <= 130 && p.B >= 25 && p.B <= 80 && (p.R - p.G >= 45) && (p.G - p.B >= 45));
+                        int oakDarkGold = pixels.Count(p => p.R >= 110 && p.R <= 160 && p.G >= 60 && p.G <= 108 && p.B >= 22 && p.B <= 60 && (p.R - p.G >= 45) && (p.G - p.B >= 30) && (p.R + p.G + p.B <= 320));
+
+                        if (oakAmber >= 135 && oakDarkGold >= 280)
+                        {
+                            return 10000.0 + (oakAmber * 4.0) + (oakDarkGold * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.PumpkinSeeds,
+                    Type = ItemType.Resource,
+                    DisplayName = "Pumpkin Seeds",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#E0D8BF"),
+                        ColorTranslator.FromHtml("#E0BF96"),
+                        ColorTranslator.FromHtml("#D8B78E"),
+                        ColorTranslator.FromHtml("#DCBB92"),
+                        ColorTranslator.FromHtml("#EAC18F"),
+                        ColorTranslator.FromHtml("#713E2D")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int oakAmber = pixels.Count(p => p.R >= 125 && p.R <= 180 && p.G >= 75 && p.G <= 130 && p.B >= 25 && p.B <= 80 && (p.R - p.G >= 45) && (p.G - p.B >= 45));
+                        if (oakAmber >= 80) return 0.0;
+
+                        int combBright = pixels.Count(p => p.R >= 230 && p.G >= 205 && p.B >= 170 && (p.R + p.G + p.B >= 610) && (p.R - p.G >= 10) && (p.G - p.B >= 12));
+                        if (combBright >= 350) return 0.0;
+
+                        int pmpCream = pixels.Count(p => p.R >= 205 && p.G >= 172 && p.B >= 130 && (p.R - p.G >= 15) && (p.R - p.G <= 45) && (p.G - p.B >= 20) && (p.G - p.B <= 52));
+                        int pmpIvory = pixels.Count(p => p.R >= 210 && p.G >= 195 && p.B >= 160 && (p.R - p.G >= 4) && (p.G - p.B >= 18) && (p.R + p.G + p.B >= 565));
+                        int pmpShadow = pixels.Count(p => p.R >= 95 && p.R <= 135 && p.G >= 50 && p.G <= 82 && p.B >= 35 && p.B <= 65 && (p.R - p.G >= 38) && (p.G - p.B >= 10));
+
+                        if (pmpCream >= 450 && pmpIvory >= 250 && pmpShadow >= 65)
+                        {
+                            return 10000.0 + (pmpCream * 3.0) + (pmpIvory * 4.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Comb,
+                    Type = ItemType.Special,
+                    DisplayName = "Comb",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#F5E5D4"),
+                        ColorTranslator.FromHtml("#F0D7B6"),
+                        ColorTranslator.FromHtml("#EDD4B3"),
+                        ColorTranslator.FromHtml("#EEDDBB"),
+                        ColorTranslator.FromHtml("#7D5B39"),
+                        ColorTranslator.FromHtml("#DDAA88")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int combBright = pixels.Count(p => p.R >= 230 && p.G >= 205 && p.B >= 170 && (p.R + p.G + p.B >= 610) && (p.R - p.G >= 10) && (p.G - p.B >= 12));
+                        int combShadow = pixels.Count(p => p.R >= 115 && p.R <= 145 && p.G >= 82 && p.G <= 112 && p.B >= 48 && p.B <= 78 && (p.R - p.G >= 30) && (p.R - p.G <= 40) && (p.G - p.B >= 28) && (p.G - p.B <= 40));
+                        int pmpShadow = pixels.Count(p => p.R >= 95 && p.R <= 135 && p.G >= 50 && p.G <= 82 && p.B >= 35 && p.B <= 65 && (p.R - p.G >= 38) && (p.G - p.B >= 10));
+
+                        if (combBright >= 400 && combShadow >= 75 && pmpShadow < 60)
+                        {
+                            return 10000.0 + (combBright * 4.0) + (combShadow * 3.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Candle,
+                    Type = ItemType.Resource,
+                    DisplayName = "Candle",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#D9B06E"),
+                        ColorTranslator.FromHtml("#B69460"),
+                        ColorTranslator.FromHtml("#AD8452"),
+                        ColorTranslator.FromHtml("#A67C4B"),
+                        ColorTranslator.FromHtml("#8F663C"),
+                        ColorTranslator.FromHtml("#704A2E")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int cndHighlight = pixels.Count(p => p.R >= 165 && p.R <= 230 && p.G >= 125 && p.G <= 190 && p.B >= 70 && p.B <= 125 && (p.R - p.G >= 28) && (p.R - p.G <= 52) && (p.G - p.B >= 48));
+                        int cndWaxGB = pixels.Count(p => p.R >= 135 && p.R <= 195 && p.G >= 95 && p.G <= 155 && p.B >= 55 && p.B <= 105 && (p.R - p.G >= 30) && (p.R - p.G <= 46) && (p.G - p.B >= p.R - p.G));
+
+                        if (cndHighlight >= 360 && cndWaxGB >= 260)
+                        {
+                            return 10000.0 + (cndHighlight * 4.0) + (cndWaxGB * 3.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Skull,
+                    Type = ItemType.Special,
+                    DisplayName = "Skull",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#CBC2B2"),
+                        ColorTranslator.FromHtml("#CCBBA3"),
+                        ColorTranslator.FromHtml("#E0D8C8"),
+                        ColorTranslator.FromHtml("#EDE5DC"),
+                        ColorTranslator.FromHtml("#BBAB92"),
+                        ColorTranslator.FromHtml("#463524"),
+                        ColorTranslator.FromHtml("#5D4C3B")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int skBonePale = pixels.Count(p => p.R >= 185 && p.G >= 175 && p.B >= 155 && (p.R - p.G >= 4) && (p.R - p.G <= 16) && (p.G - p.B >= 7) && (p.G - p.B <= 26) && (p.R + p.G + p.B >= 520));
+                        int skBrightBone = pixels.Count(p => p.R >= 200 && p.G >= 190 && p.B >= 172 && (p.R - p.G >= 4) && (p.R - p.G <= 13) && (p.G - p.B >= 7) && (p.G - p.B <= 20));
+                        int skDarkUmber = pixels.Count(p => p.R >= 55 && p.R <= 98 && p.G >= 40 && p.G <= 80 && p.B >= 26 && p.B <= 64 && (p.R - p.G >= 12) && (p.R - p.G <= 22) && (p.G - p.B >= 12) && (p.G - p.B <= 22));
+
+                        if (skBonePale >= 300 && skBrightBone >= 180 && skDarkUmber >= 180)
+                        {
+                            return 10000.0 + (skBonePale * 3.0) + (skDarkUmber * 4.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.FlaxFibber,
+                    Type = ItemType.Resource,
+                    DisplayName = "Flax Fiber",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#664433"),
+                        ColorTranslator.FromHtml("#6D4C3B"),
+                        ColorTranslator.FromHtml("#694837"),
+                        ColorTranslator.FromHtml("#9D7C5B"),
+                        ColorTranslator.FromHtml("#A1805F"),
+                        ColorTranslator.FromHtml("#AA8866")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int flxChestnut = pixels.Count(p => p.R >= 92 && p.R <= 118 && p.G >= 60 && p.G <= 84 && p.B >= 44 && p.B <= 66 && (p.R - p.G >= 28) && (p.R - p.G <= 38) && (p.G - p.B >= 13) && (p.G - p.B <= 21));
+                        int flxStrand = pixels.Count(p => p.R >= 145 && p.R <= 182 && p.G >= 112 && p.G <= 148 && p.B >= 78 && p.B <= 114 && (p.R - p.G >= 28) && (p.R - p.G <= 38) && (p.G - p.B >= 28) && (p.G - p.B <= 38));
+                        int fibSpec = pixels.Count(p => p.R >= 185 && p.G >= 150 && p.B >= 95);
+
+                        if (flxChestnut >= 140 && flxStrand >= 160 && fibSpec < 50)
+                        {
+                            return 10000.0 + (flxStrand * 4.0) + (flxChestnut * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Hourglass,
+                    Type = ItemType.Special,
+                    DisplayName = "Hourglass",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#A3482F"),
+                        ColorTranslator.FromHtml("#B3502F"),
+                        ColorTranslator.FromHtml("#B07D4A"),
+                        ColorTranslator.FromHtml("#602D1C"),
+                        ColorTranslator.FromHtml("#4C4C5D"),
+                        ColorTranslator.FromHtml("#444455"),
+                        ColorTranslator.FromHtml("#7799AA")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int hgWoodRed = pixels.Count(p => p.R >= 120 && p.R <= 198 && p.G >= 48 && p.G <= 95 && p.B >= 28 && p.B <= 60 && (p.R - p.G >= 60));
+                        int hgGlassBlue = pixels.Count(p => p.R >= 55 && p.R <= 92 && p.G >= 55 && p.G <= 92 && p.B >= 72 && p.B <= 112 && Math.Abs(p.R - p.G) <= 5 && (p.B - p.G >= 12) && (p.B - p.G <= 25));
+
+                        if (hgWoodRed >= 120 && hgGlassBlue >= 40)
+                        {
+                            return 10000.0 + (hgWoodRed * 4.0) + (hgGlassBlue * 4.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.PineLog,
+                    Type = ItemType.Resource,
+                    DisplayName = "Pine Log",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#3B231A"),
+                        ColorTranslator.FromHtml("#442B23"),
+                        ColorTranslator.FromHtml("#472E26"),
+                        ColorTranslator.FromHtml("#4A3129"),
+                        ColorTranslator.FromHtml("#4C332B"),
+                        ColorTranslator.FromHtml("#8E6C5A")
+                    },
+                    // Đặc trưng của Gỗ Thông (Pine Log): Vỏ gỗ nâu gụ sẫm (pineBark: R[52..86], G[28..60], B[18..52], R-G[19..29], G-B[5..14] >= 750 px, thực tế 1852-2114 px),
+                    // kết hợp với mặt cắt lõi gỗ vân tròn màu hồng be nhạt (pineRing: R[130..195], G[95..155], B[80..135], R-G[26..44], G-B[10..26] >= 150 px, thực tế 382-495 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int pineBark = pixels.Count(p => p.R >= 52 && p.R <= 86 && p.G >= 28 && p.G <= 60 && p.B >= 18 && p.B <= 52 && (p.R - p.G >= 19) && (p.R - p.G <= 29) && (p.G - p.B >= 5) && (p.G - p.B <= 14));
+                        int pineRing = pixels.Count(p => p.R >= 130 && p.R <= 195 && p.G >= 95 && p.G <= 155 && p.B >= 80 && p.B <= 135 && (p.R - p.G >= 26) && (p.R - p.G <= 44) && (p.G - p.B >= 10) && (p.G - p.B <= 26));
+
+                        if (pineBark >= 750 && pineRing >= 150)
+                        {
+                            return 10000.0 + (pineBark * 2.0) + (pineRing * 4.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.EmptyFlask,
+                    Type = ItemType.Resource,
+                    DisplayName = "Empty Flask",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#371616"),
+                        ColorTranslator.FromHtml("#3B1A1A"),
+                        ColorTranslator.FromHtml("#5C2B23"),
+                        ColorTranslator.FromHtml("#96543B"),
+                        ColorTranslator.FromHtml("#692F27"),
+                        ColorTranslator.FromHtml("#783E2E")
+                    },
+                    // Đặc trưng của Bình Da Rỗng (Empty Flask): Vùng bóng tối đỏ mận sâu (flkDeepOxblood: R[44..78], G[14..28], B[14..28], R-G >= 27, |G-B| <= 5 >= 350 px, thực tế 842-1065 px),
+                    // kết hợp với phần thân da nâu đỏ khâu chỉ (flkMid: R[84..165], G[38..96], B[28..70], R-G >= 36, G-B[4..30] >= 600 px, thực tế 1469-1820 px) và loại trừ Ale (aleMugDark < 450 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int flkDeepOxblood = pixels.Count(p => p.R >= 44 && p.R <= 78 && p.G >= 14 && p.G <= 28 && p.B >= 14 && p.B <= 28 && (p.R - p.G >= 27) && Math.Abs(p.G - p.B) <= 5);
+                        int flkMid = pixels.Count(p => p.R >= 84 && p.R <= 165 && p.G >= 38 && p.G <= 96 && p.B >= 28 && p.B <= 70 && (p.R - p.G >= 36) && (p.G - p.B >= 4) && (p.G - p.B <= 30));
+                        int aleMugDark = pixels.Count(p => p.R >= 55 && p.R <= 96 && p.G >= 29 && p.G <= 55 && p.B >= 29 && p.B <= 55 && Math.Abs(p.G - p.B) <= 3 && (p.R - p.G >= 26) && (p.R - p.G <= 45));
+
+                        if (flkDeepOxblood >= 350 && flkMid >= 600 && aleMugDark < 450)
+                        {
+                            return 10000.0 + (flkDeepOxblood * 4.0) + (flkMid * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.RawMeat,
+                    Type = ItemType.Consumable,
+                    DisplayName = "Raw Meat",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#79272F"),
+                        ColorTranslator.FromHtml("#71272F"),
+                        ColorTranslator.FromHtml("#7D2B33"),
+                        ColorTranslator.FromHtml("#993344"),
+                        ColorTranslator.FromHtml("#C14A5B"),
+                        ColorTranslator.FromHtml("#6D232B")
+                    },
+                    // Đặc trưng của Thịt Sống (Raw Meat): Sắc đỏ hồng thịt tươi có B > G (meatRuby: R[100..220], G[25..105], B[32..118], R-G >= 68, R-B >= 55, B-G >= 4 >= 1200 px, thực tế 3485-3783 px),
+                    // kết hợp với các đường vân mỡ hồng nhạt (meatFat: R[180..238], G[125..200], B[135..210], R-G >= 22, B-G >= 4 >= 100 px, thực tế 267-336 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int meatRuby = pixels.Count(p => p.R >= 100 && p.R <= 220 && p.G >= 25 && p.G <= 105 && p.B >= 32 && p.B <= 118 && (p.R - p.G >= 68) && (p.R - p.B >= 55) && (p.B - p.G >= 4));
+                        int meatFat = pixels.Count(p => p.R >= 180 && p.R <= 238 && p.G >= 125 && p.G <= 200 && p.B >= 135 && p.B <= 210 && (p.R - p.G >= 22) && (p.B - p.G >= 4));
+
+                        if (meatRuby >= 1200 && meatFat >= 100)
+                        {
+                            return 10000.0 + (meatRuby * 2.0) + (meatFat * 4.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.Ale,
+                    Type = ItemType.Consumable,
+                    DisplayName = "Ale",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#542B2B"),
+                        ColorTranslator.FromHtml("#401F1F"),
+                        ColorTranslator.FromHtml("#582F2F"),
+                        ColorTranslator.FromHtml("#552C2C"),
+                        ColorTranslator.FromHtml("#593030"),
+                        ColorTranslator.FromHtml("#78483E")
+                    },
+                    // Đặc trưng của Vại Bia (Ale): Thân vại gỗ nâu mận cân kênh G~B (aleMugDark: R[55..96], G[29..55], B[29..55], |G-B| <= 3, R-G[26..45] >= 650 px, thực tế 1433-2334 px),
+                    // kết hợp phần gỗ sáng ấm (flkMid >= 450 px, thực tế 1065-1541 px) và không có bóng đỏ mận cực đậm của Empty Flask (flkDeepOxblood < 300 px).
+                    CustomEvaluator = pixels =>
+                    {
+                        if (pixels.Count < 100) return 0.0;
+
+                        int aleMugDark = pixels.Count(p => p.R >= 55 && p.R <= 96 && p.G >= 29 && p.G <= 55 && p.B >= 29 && p.B <= 55 && Math.Abs(p.G - p.B) <= 3 && (p.R - p.G >= 26) && (p.R - p.G <= 45));
+                        int flkMid = pixels.Count(p => p.R >= 84 && p.R <= 165 && p.G >= 38 && p.G <= 96 && p.B >= 28 && p.B <= 70 && (p.R - p.G >= 36) && (p.G - p.B >= 4) && (p.G - p.B <= 30));
+                        int flkDeepOxblood = pixels.Count(p => p.R >= 44 && p.R <= 78 && p.G >= 14 && p.G <= 28 && p.B >= 14 && p.B <= 28 && (p.R - p.G >= 27) && Math.Abs(p.G - p.B) <= 5);
+
+                        if (aleMugDark >= 650 && flkMid >= 450 && flkDeepOxblood < 300)
+                        {
+                            return 10000.0 + (aleMugDark * 2.0) + (flkMid * 2.0);
+                        }
+
+                        return 0.0;
+                    }
+                },
+                new Item
+                {
+                    Name = ItemName.SoulShard,
+                    Type = ItemType.Resource,
+                    DisplayName = "Soul Shard",
+                    Colors = new List<Color>
+                    {
+                        ColorTranslator.FromHtml("#646464"),
+                        ColorTranslator.FromHtml("#777777"),
+                        ColorTranslator.FromHtml("#505050")
+                    },
+                    CustomEvaluator = pixels =>
+                    {
+                        int purpleCount = pixels.Count(p => (p.B - p.G >= 7) && (p.R - p.G >= 7) && (p.R + p.G + p.B >= 180));
+                        int tanRope = pixels.Count(p => p.R > p.G && p.G > p.B && (p.R - p.G >= 10) && (p.G - p.B >= 10));
+                        int chainOliveRust = pixels.Count(p => (p.G - p.B >= 4));
+                        int wireDarkBundle = pixels.Count(p => (p.R + p.G + p.B <= 50) && (p.G - p.B <= 3) && (p.R >= p.G));
+                        if (purpleCount >= 20 || tanRope >= 80 || chainOliveRust >= 150 || wireDarkBundle >= 500) return 0.0;
+
+                        int soulMatches = pixels.Count(p => Math.Abs(p.R - 100) <= 12 && Math.Abs(p.G - 100) <= 12 && Math.Abs(p.B - 100) <= 12);
+                        return soulMatches >= 150 ? (10000.0 + soulMatches) : 0.0;
                     }
                 }
             };
